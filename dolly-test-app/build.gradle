@@ -1,0 +1,21 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath group: 'org.gradlefx', name: 'gradlefx', version: '0.6.3'
+	}
+}
+
+apply plugin: 'gradlefx'
+
+flexHome = '/usr/share/flex/flex-sdk-4.6'
+
+type = 'swc'
+
+//srcDirs = 'src/main/actionscript'
+//testDirs = 'src/test/actionscript'
+
+additionalCompilerOptions = [
+		'-keep-as3-metadata+=Cloneable,Copyable'
+]
