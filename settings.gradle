@@ -1,1 +1,1 @@
-include 'dolly-framework', 'dolly-test-app'
+include 'dolly-framework'//, 'dolly-test-app'
