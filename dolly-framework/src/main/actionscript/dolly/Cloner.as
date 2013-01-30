@@ -1,6 +1,7 @@
 package dolly {
 public class Cloner {
-	public function Cloner() {
+	public static function clone(source:*):* {
+		return null;
 	}
 }
 }
