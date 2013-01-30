@@ -11,13 +11,13 @@ apply plugin: 'gradlefx'
 
 dependencies {
 	merged files(
-			'/home/yuriy/Projects/2013/dolly/dolly-framework/lib/as3commons-reflect-1.6.2.swc'
+			"$projectDir/lib/as3commons-reflect-1.6.2.swc"
 	)
 
 	test files(
-			'/home/yuriy/Projects/2013/dolly/dolly-framework/lib/flexunit-4.1.0-8-as3_4.1.0.16076.swc',
-			'/home/yuriy/Projects/2013/dolly/dolly-framework/lib/flexUnitTasks-4.1.0-8.jar',
-			'/home/yuriy/Projects/2013/dolly/dolly-framework/lib/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc'
+			"$projectDir/lib/flexunit-4.1.0-8-as3_4.1.0.16076.swc",
+			"$projectDir/lib/flexUnitTasks-4.1.0-8.jar",
+			"$projectDir/lib/flexunit-cilistener-4.1.0-8-4.1.0.16076.swc"
 	)
 }
 
