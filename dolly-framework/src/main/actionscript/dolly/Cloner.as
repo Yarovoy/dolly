@@ -21,7 +21,9 @@ public class Cloner {
 
 		if (isClassCloneable) {
 			for each(variable in type.variables) {
-				result.push(variable);
+				if (!variable.isStatic) {
+					result.push(variable);
+				}
 			}
 			for each(accessor in type.accessors) {
 				if (accessor.isReadable() && accessor.isWriteable() && !accessor.isStatic) {
@@ -33,7 +35,7 @@ public class Cloner {
 			for each(var metadataContainer:IMetadataContainer in metadataContainers) {
 				if (metadataContainer is Variable) {
 					variable = metadataContainer as Variable;
-					if (variable.hasMetadata(MetadataName.CLONEABLE)) {
+					if (!variable.isStatic && variable.hasMetadata(MetadataName.CLONEABLE)) {
 						result.push(variable);
 					}
 				} else if (metadataContainer is Accessor) {
