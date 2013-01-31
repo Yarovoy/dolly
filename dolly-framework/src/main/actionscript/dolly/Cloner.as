@@ -20,10 +20,9 @@ public class Cloner {
 				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
 	}
 
-	dolly_internal static function getCloneableFields(source:*):Vector.<Field> {
+	dolly_internal static function getCloneableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
-		const type:Type = Type.forInstance(source);
 		var variable:Variable;
 		var accessor:Accessor;
 
