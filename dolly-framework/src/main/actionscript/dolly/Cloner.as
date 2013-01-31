@@ -14,6 +14,11 @@ public class Cloner {
 		return !variable.isStatic && (skipMetadataChecking || variable.hasMetadata(MetadataName.CLONEABLE));
 	}
 
+	public static function isAccessorCloneable(accessor:Accessor, skipMetadataChecking:Boolean = true):Boolean {
+		return !accessor.isStatic && accessor.isReadable() && accessor.isWriteable() &&
+				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
+	}
+
 	dolly_internal static function getCloneableFields(source:*):Array {
 		const result:Array = [];
 
@@ -22,7 +27,6 @@ public class Cloner {
 		var accessor:Accessor;
 
 		const isClassCloneable:Boolean = type.hasMetadata(MetadataName.CLONEABLE);
-
 		if (isClassCloneable) {
 			for each(variable in type.variables) {
 				if (isVariableCloneable(variable)) {
@@ -30,7 +34,7 @@ public class Cloner {
 				}
 			}
 			for each(accessor in type.accessors) {
-				if (accessor.isReadable() && accessor.isWriteable() && !accessor.isStatic) {
+				if (isAccessorCloneable(accessor)) {
 					result.push(accessor);
 				}
 			}
@@ -44,8 +48,7 @@ public class Cloner {
 					}
 				} else if (metadataContainer is Accessor) {
 					accessor = metadataContainer as Accessor;
-					if (accessor.hasMetadata(MetadataName.CLONEABLE)
-							&& accessor.isReadable() && accessor.isWriteable() && !accessor.isStatic) {
+					if (isAccessorCloneable(accessor, false)) {
 						result.push(accessor);
 					}
 				}
