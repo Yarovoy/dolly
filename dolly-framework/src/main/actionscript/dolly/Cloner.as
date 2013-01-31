@@ -4,6 +4,7 @@ import dolly.core.dolly_internal;
 import dolly.core.metadata.MetadataName;
 
 import org.as3commons.reflect.Accessor;
+import org.as3commons.reflect.Field;
 import org.as3commons.reflect.IMetadataContainer;
 import org.as3commons.reflect.Type;
 import org.as3commons.reflect.Variable;
@@ -19,8 +20,8 @@ public class Cloner {
 				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
 	}
 
-	dolly_internal static function getCloneableFields(source:*):Array {
-		const result:Array = [];
+	dolly_internal static function getCloneableFields(source:*):Vector.<Field> {
+		const result:Vector.<Field> = new Vector.<Field>();
 
 		const type:Type = Type.forInstance(source);
 		var variable:Variable;

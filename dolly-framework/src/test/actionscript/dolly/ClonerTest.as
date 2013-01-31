@@ -1,6 +1,7 @@
 package dolly {
 import dolly.core.dolly_internal;
 
+import org.as3commons.reflect.Field;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;
 
@@ -25,7 +26,7 @@ public class ClonerTest {
 
 	[Test]
 	public function testGetCloneableFields():void {
-		var cloneableFields:Array = Cloner.getCloneableFields(classMarkedAsCloneable);
+		var cloneableFields:Vector.<Field> = Cloner.getCloneableFields(classMarkedAsCloneable);
 
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
