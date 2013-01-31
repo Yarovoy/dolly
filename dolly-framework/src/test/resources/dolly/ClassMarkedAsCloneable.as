@@ -3,16 +3,16 @@ package dolly {
 [Cloneable]
 public class ClassMarkedAsCloneable {
 
-	public static var staticProperty1:String = "static property value 1";
-	public static var staticProperty2:String = "static property value 2";
-	public static var staticProperty3:String = "static property value 3";
+	public static var staticProperty1:String;
+	public static var staticProperty2:String;
+	public static var staticProperty3:String;
 
-	private var _writableField:String = 'writable field value';
+	private var _writableField:String;
 	private var _readOnlyField:String = "read-only field value";
 
-	public var property1:String = "value 1";
-	public var property2:String = "value 2";
-	public var property3:String = "value 3";
+	public var property1:String;
+	public var property2:String;
+	public var property3:String;
 
 	public function ClassMarkedAsCloneable() {
 	}
