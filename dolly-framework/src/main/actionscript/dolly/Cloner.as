@@ -9,6 +9,8 @@ import org.as3commons.reflect.IMetadataContainer;
 import org.as3commons.reflect.Type;
 import org.as3commons.reflect.Variable;
 
+use namespace dolly_internal;
+
 public class Cloner {
 
 	private static function isVariableCloneable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
@@ -59,7 +61,17 @@ public class Cloner {
 	}
 
 	public static function clone(source:*):* {
-		return null;
+		const type:Type = Type.forInstance(source);
+		const clone:* = new (type.clazz)();
+
+		const fieldsToClone:Vector.<Field> = getCloneableFieldsForType(type);
+		var name:String;
+		for each(var field:Field in fieldsToClone) {
+			name = field.name;
+			clone[name] = source[name];
+		}
+
+		return clone;
 	}
 }
 }
