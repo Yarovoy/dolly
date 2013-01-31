@@ -10,6 +10,10 @@ import org.as3commons.reflect.Variable;
 
 public class Cloner {
 
+	private static function isVariableCloneable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
+		return !variable.isStatic && (skipMetadataChecking || variable.hasMetadata(MetadataName.CLONEABLE));
+	}
+
 	dolly_internal static function getCloneableFields(source:*):Array {
 		const result:Array = [];
 
@@ -21,7 +25,7 @@ public class Cloner {
 
 		if (isClassCloneable) {
 			for each(variable in type.variables) {
-				if (!variable.isStatic) {
+				if (isVariableCloneable(variable)) {
 					result.push(variable);
 				}
 			}
@@ -35,7 +39,7 @@ public class Cloner {
 			for each(var metadataContainer:IMetadataContainer in metadataContainers) {
 				if (metadataContainer is Variable) {
 					variable = metadataContainer as Variable;
-					if (!variable.isStatic && variable.hasMetadata(MetadataName.CLONEABLE)) {
+					if (isVariableCloneable(variable, false)) {
 						result.push(variable);
 					}
 				} else if (metadataContainer is Accessor) {
