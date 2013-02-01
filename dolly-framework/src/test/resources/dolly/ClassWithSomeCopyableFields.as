@@ -3,10 +3,10 @@ public class ClassWithSomeCopyableFields {
 
 	public static var staticProperty1:String;
 
-	[Cloneable]
+	[Copyable]
 	public static var staticProperty2:String;
 
-	[Cloneable]
+	[Copyable]
 	public static var staticProperty3:String;
 
 	private var _writableField:String;
@@ -14,16 +14,16 @@ public class ClassWithSomeCopyableFields {
 
 	public var property1:String;
 
-	[Cloneable]
+	[Copyable]
 	public var property2:String;
 
-	[Cloneable]
+	[Copyable]
 	public var property3:String;
 
 	public function ClassWithSomeCopyableFields() {
 	}
 
-	[Cloneable]
+	[Copyable]
 	public function get writableField():String {
 		return _writableField;
 	}
@@ -32,7 +32,7 @@ public class ClassWithSomeCopyableFields {
 		_writableField = value;
 	}
 
-	[Cloneable]
+	[Copyable]
 	public function get readOnlyField():String {
 		return _readOnlyField;
 	}
