@@ -5,6 +5,7 @@ import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;
+import org.flexunit.asserts.assertNull;
 
 use namespace dolly_internal;
 
@@ -24,6 +25,12 @@ public class ClonerTest {
 		classMarkedAsCloneable.writableField = "value 4";
 
 		classWithSomeCloneableFields = new ClassWithSomeCloneableFields();
+		classWithSomeCloneableFields.property1 = "value 1";
+		classWithSomeCloneableFields.property2 = "value 2";
+		classWithSomeCloneableFields.property3 = "value 3";
+		classWithSomeCloneableFields.writableField = "value 4";
+
+		classMarkedAsCloneableType = Type.forInstance(classMarkedAsCloneable);
 		classWithSomeCloneableFieldsType = Type.forInstance(classWithSomeCloneableFields);
 	}
 
@@ -49,7 +56,7 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testCloneClassLevelMetadata():void {
+	public function testCloneWithClassLevelMetadata():void {
 		const clone1:ClassMarkedAsCloneable = Cloner.clone(classMarkedAsCloneable) as ClassMarkedAsCloneable;
 
 		assertNotNull(clone1);
@@ -61,6 +68,21 @@ public class ClonerTest {
 		assertEquals(clone1.property3, classMarkedAsCloneable.property3);
 		assertNotNull(clone1.writableField);
 		assertEquals(clone1.writableField, classMarkedAsCloneable.writableField);
+	}
+
+	public function testCloneWithPropertyLevelMetadata():void {
+		const clone2:ClassWithSomeCloneableFields = Cloner.clone(
+				classWithSomeCloneableFields
+		) as ClassWithSomeCloneableFields;
+
+		assertNotNull(clone2);
+		assertNull(clone2.property1);
+		assertNotNull(clone2.property2);
+		assertEquals(clone2.property2, classWithSomeCloneableFields.property2);
+		assertNotNull(clone2.property3);
+		assertEquals(clone2.property3, classWithSomeCloneableFields.property3);
+		assertNotNull(clone2.writableField);
+		assertEquals(clone2.writableField, classWithSomeCloneableFields.writableField);
 	}
 }
 }
