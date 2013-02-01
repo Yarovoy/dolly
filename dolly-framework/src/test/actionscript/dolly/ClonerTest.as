@@ -21,8 +21,7 @@ public class ClonerTest {
 		classMarkedAsCloneable.property1 = "value 1";
 		classMarkedAsCloneable.property2 = "value 2";
 		classMarkedAsCloneable.property3 = "value 3";
-
-		classMarkedAsCloneableType = Type.forInstance(classMarkedAsCloneable);
+		classMarkedAsCloneable.writableField = "value 4";
 
 		classWithSomeCloneableFields = new ClassWithSomeCloneableFields();
 		classWithSomeCloneableFieldsType = Type.forInstance(classWithSomeCloneableFields);
@@ -50,7 +49,7 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testClone():void {
+	public function testCloneClassLevelMetadata():void {
 		const clone1:ClassMarkedAsCloneable = Cloner.clone(classMarkedAsCloneable) as ClassMarkedAsCloneable;
 
 		assertNotNull(clone1);
@@ -60,6 +59,8 @@ public class ClonerTest {
 		assertEquals(clone1.property2, classMarkedAsCloneable.property2);
 		assertNotNull(clone1.property3);
 		assertEquals(clone1.property3, classMarkedAsCloneable.property3);
+		assertNotNull(clone1.writableField);
+		assertEquals(clone1.writableField, classMarkedAsCloneable.writableField);
 	}
 }
 }
