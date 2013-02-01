@@ -70,6 +70,7 @@ public class ClonerTest {
 		assertEquals(clone1.writableField, classMarkedAsCloneable.writableField);
 	}
 
+	[Test]
 	public function testCloneWithPropertyLevelMetadata():void {
 		const clone2:ClassWithSomeCloneableFields = Cloner.clone(
 				classWithSomeCloneableFields
