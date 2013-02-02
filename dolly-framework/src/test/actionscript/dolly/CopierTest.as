@@ -1,5 +1,12 @@
 package dolly {
+import dolly.core.dolly_internal;
+
+import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
+import org.flexunit.asserts.assertEquals;
+import org.flexunit.asserts.assertNotNull;
+
+use namespace dolly_internal;
 
 public class CopierTest {
 
@@ -37,7 +44,23 @@ public class CopierTest {
 	}
 
 	[Test]
-	public function testSmth():void {
+	public function testGetCopyableFieldsForType():void {
+		var copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(copyableClassType);
+
+		assertNotNull(copyableFields);
+		assertEquals(4, copyableFields.length);
+		assertNotNull(copyableFields[0]);
+		assertNotNull(copyableFields[1]);
+		assertNotNull(copyableFields[2]);
+		assertNotNull(copyableFields[3]);
+
+		copyableFields = Copier.getCopyableFieldsForType(classWithCopyableFieldsType);
+
+		assertNotNull(copyableFields);
+		assertEquals(3, copyableFields.length);
+		assertNotNull(copyableFields[0]);
+		assertNotNull(copyableFields[1]);
+		assertNotNull(copyableFields[2]);
 	}
 }
 }
