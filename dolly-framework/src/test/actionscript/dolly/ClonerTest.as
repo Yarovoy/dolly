@@ -43,7 +43,7 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testGetCloneableFields():void {
+	public function testGetCloneableFieldsForType():void {
 		var cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classMarkedAsCloneableType);
 
 		assertNotNull(cloneableFields);
