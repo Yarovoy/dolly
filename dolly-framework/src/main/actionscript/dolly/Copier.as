@@ -8,6 +8,8 @@ import org.as3commons.reflect.IMetadataContainer;
 import org.as3commons.reflect.Type;
 import org.as3commons.reflect.Variable;
 
+use namespace dolly_internal;
+
 public class Copier {
 
 	private static function isVariableCopyable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
@@ -58,7 +60,17 @@ public class Copier {
 	}
 
 	public static function copy(source:*):* {
-		return null;
+		const type:Type = Type.forInstance(source);
+		const copy:* = new (type.clazz)();
+
+		const fieldsToCopy:Vector.<Field> = getCopyableFieldsForType(type);
+		var name:String;
+		for each(var field:Field in fieldsToCopy) {
+			name = field.name;
+			copy[name] = source[name];
+		}
+
+		return copy;
 	}
 }
 }

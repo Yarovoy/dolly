@@ -5,6 +5,7 @@ import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;
+import org.flexunit.asserts.assertNull;
 
 use namespace dolly_internal;
 
@@ -61,6 +62,35 @@ public class CopierTest {
 		assertNotNull(copyableFields[0]);
 		assertNotNull(copyableFields[1]);
 		assertNotNull(copyableFields[2]);
+	}
+
+	[Test]
+	public function testCopyWithClassLevelMetadata():void {
+		const copy:ClassLevelCopyable = Copier.copy(classLevelCopyable) as ClassLevelCopyable;
+
+		assertNotNull(copy);
+		assertNotNull(copy.property1);
+		assertEquals(copy.property1, classLevelCopyable.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
+	}
+
+	[Test]
+	public function testCopyWithPropertyLevelMetadata():void {
+		const copy:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable) as PropertyLevelCopyable;
+
+		assertNotNull(copy);
+		assertNull(copy.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
 	}
 }
 }
