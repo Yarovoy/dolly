@@ -11,20 +11,20 @@ use namespace dolly_internal;
 
 public class ClonerTest {
 
-	private var classMarkedAsCloneable:ClassMarkedAsCloneable;
-	private var classWithSomeCloneableFields:ClassWithSomeCloneableFields;
+	private var classMarkedAsCloneable:ClassLevelCloneable;
+	private var classWithSomeCloneableFields:PropertyLevelCloneable;
 	private var classMarkedAsCloneableType:Type;
 	private var classWithSomeCloneableFieldsType:Type;
 
 	[Before]
 	public function before():void {
-		classMarkedAsCloneable = new ClassMarkedAsCloneable();
+		classMarkedAsCloneable = new ClassLevelCloneable();
 		classMarkedAsCloneable.property1 = "value 1";
 		classMarkedAsCloneable.property2 = "value 2";
 		classMarkedAsCloneable.property3 = "value 3";
 		classMarkedAsCloneable.writableField = "value 4";
 
-		classWithSomeCloneableFields = new ClassWithSomeCloneableFields();
+		classWithSomeCloneableFields = new PropertyLevelCloneable();
 		classWithSomeCloneableFields.property1 = "value 1";
 		classWithSomeCloneableFields.property2 = "value 2";
 		classWithSomeCloneableFields.property3 = "value 3";
@@ -57,7 +57,7 @@ public class ClonerTest {
 
 	[Test]
 	public function testCloneWithClassLevelMetadata():void {
-		const clone1:ClassMarkedAsCloneable = Cloner.clone(classMarkedAsCloneable) as ClassMarkedAsCloneable;
+		const clone1:ClassLevelCloneable = Cloner.clone(classMarkedAsCloneable) as ClassLevelCloneable;
 
 		assertNotNull(clone1);
 		assertNotNull(clone1.property1);
@@ -72,9 +72,9 @@ public class ClonerTest {
 
 	[Test]
 	public function testCloneWithPropertyLevelMetadata():void {
-		const clone2:ClassWithSomeCloneableFields = Cloner.clone(
+		const clone2:PropertyLevelCloneable = Cloner.clone(
 				classWithSomeCloneableFields
-		) as ClassWithSomeCloneableFields;
+		) as PropertyLevelCloneable;
 
 		assertNotNull(clone2);
 		assertNull(clone2.property1);

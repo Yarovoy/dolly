@@ -1,7 +1,7 @@
 package dolly {
 
 [Copyable]
-public class ClassMarkedAsCopyable {
+public class ClassLevelCopyable {
 
 	public static var staticProperty1:String;
 	public static var staticProperty2:String;
@@ -14,7 +14,7 @@ public class ClassMarkedAsCopyable {
 	public var property2:String;
 	public var property3:String;
 
-	public function ClassMarkedAsCopyable() {
+	public function ClassLevelCopyable() {
 	}
 
 	public function get writableField():String {

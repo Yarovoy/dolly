@@ -10,42 +10,42 @@ use namespace dolly_internal;
 
 public class CopierTest {
 
-	private var copyableClass:ClassMarkedAsCopyable;
-	private var copyableClassType:Type;
+	private var classLevelCopyable:ClassLevelCopyable;
+	private var classLevelCopyableType:Type;
 
-	private var classWithCopyableFields:ClassWithSomeCopyableFields;
-	private var classWithCopyableFieldsType:Type;
+	private var propertyLevelCopyable:PropertyLevelCopyable;
+	private var propertyLevelCopyableType:Type;
 
 	[Before]
 	public function before():void {
-		copyableClass = new ClassMarkedAsCopyable();
-		copyableClass.property1 = "value 1";
-		copyableClass.property2 = "value 2";
-		copyableClass.property3 = "value 3";
-		copyableClass.writableField = "value 4";
+		classLevelCopyable = new ClassLevelCopyable();
+		classLevelCopyable.property1 = "value 1";
+		classLevelCopyable.property2 = "value 2";
+		classLevelCopyable.property3 = "value 3";
+		classLevelCopyable.writableField = "value 4";
 
-		classWithCopyableFields = new ClassWithSomeCopyableFields();
-		classWithCopyableFields.property1 = "value 1";
-		classWithCopyableFields.property2 = "value 2";
-		classWithCopyableFields.property3 = "value 3";
-		classWithCopyableFields.writableField = "value 4";
+		propertyLevelCopyable = new PropertyLevelCopyable();
+		propertyLevelCopyable.property1 = "value 1";
+		propertyLevelCopyable.property2 = "value 2";
+		propertyLevelCopyable.property3 = "value 3";
+		propertyLevelCopyable.writableField = "value 4";
 
-		copyableClassType = Type.forInstance(copyableClass);
-		classWithCopyableFieldsType = Type.forInstance(classWithCopyableFields);
+		classLevelCopyableType = Type.forInstance(classLevelCopyable);
+		propertyLevelCopyableType = Type.forInstance(propertyLevelCopyable);
 	}
 
 	[After]
 	public function after():void {
-		copyableClass = null;
-		copyableClassType = null;
+		classLevelCopyable = null;
+		classLevelCopyableType = null;
 
-		classWithCopyableFields = null;
-		classWithCopyableFieldsType = null;
+		propertyLevelCopyable = null;
+		propertyLevelCopyableType = null;
 	}
 
 	[Test]
 	public function testGetCopyableFieldsForType():void {
-		var copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(copyableClassType);
+		var copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(classLevelCopyableType);
 
 		assertNotNull(copyableFields);
 		assertEquals(4, copyableFields.length);
@@ -54,7 +54,7 @@ public class CopierTest {
 		assertNotNull(copyableFields[2]);
 		assertNotNull(copyableFields[3]);
 
-		copyableFields = Copier.getCopyableFieldsForType(classWithCopyableFieldsType);
+		copyableFields = Copier.getCopyableFieldsForType(propertyLevelCopyableType);
 
 		assertNotNull(copyableFields);
 		assertEquals(3, copyableFields.length);
