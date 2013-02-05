@@ -22,12 +22,14 @@ dependencies {
 }
 
 flexUnit.command = '/usr/bin/flashplayerdebugger'
-flexUnit.excludes=['**/*Test.as']
+flexUnit.excludes = ['**/*Test.as']
 
 flexHome = '/usr/share/flex/flex-sdk-4.6'
-
-type = 'swc'
 
 additionalCompilerOptions = [
 		'-keep-as3-metadata+=Cloneable,Copyable'
 ]
+
+type = 'swc'
+version = '0.1-alpha'
+output = "${project.name}-${version}"
