@@ -22,6 +22,7 @@ dependencies {
 }
 
 flexUnit.command = '/usr/bin/flashplayerdebugger'
+flexUnit.excludes=['**/*Test.as']
 
 flexHome = '/usr/share/flex/flex-sdk-4.6'
 
