@@ -1,7 +1,7 @@
-package dolly {
+package dolly.data {
 
-[Cloneable]
-public class ClassLevelCloneable {
+[Copyable]
+public class ClassLevelCopyable {
 
 	public static var staticProperty1:String;
 	public static var staticProperty2:String;
@@ -14,7 +14,7 @@ public class ClassLevelCloneable {
 	public var property2:String;
 	public var property3:String;
 
-	public function ClassLevelCloneable() {
+	public function ClassLevelCopyable() {
 	}
 
 	public function get writableField():String {

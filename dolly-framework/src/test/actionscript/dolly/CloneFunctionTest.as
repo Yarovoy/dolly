@@ -1,4 +1,7 @@
 package dolly {
+import dolly.data.ClassLevelCloneable;
+import dolly.data.PropertyLevelCloneable;
+
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;

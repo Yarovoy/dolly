@@ -1,5 +1,7 @@
 package dolly {
 import dolly.core.dolly_internal;
+import dolly.data.ClassLevelCopyable;
+import dolly.data.PropertyLevelCopyable;
 
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;

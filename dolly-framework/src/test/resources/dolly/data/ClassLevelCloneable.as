@@ -1,29 +1,22 @@
-package dolly {
-public class PropertyLevelCopyable {
+package dolly.data {
+
+[Cloneable]
+public class ClassLevelCloneable {
 
 	public static var staticProperty1:String;
-
-	[Copyable]
 	public static var staticProperty2:String;
-
-	[Copyable]
 	public static var staticProperty3:String;
 
 	private var _writableField:String;
 	private var _readOnlyField:String = "read-only field value";
 
 	public var property1:String;
-
-	[Copyable]
 	public var property2:String;
-
-	[Copyable]
 	public var property3:String;
 
-	public function PropertyLevelCopyable() {
+	public function ClassLevelCloneable() {
 	}
 
-	[Copyable]
 	public function get writableField():String {
 		return _writableField;
 	}
@@ -32,7 +25,6 @@ public class PropertyLevelCopyable {
 		_writableField = value;
 	}
 
-	[Copyable]
 	public function get readOnlyField():String {
 		return _readOnlyField;
 	}
