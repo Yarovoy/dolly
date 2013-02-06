@@ -68,7 +68,7 @@ public class CopierTest {
 
 	[Test]
 	public function testCopyWithClassLevelMetadata():void {
-		const copy:ClassLevelCopyable = Copier.copy(classLevelCopyable) as ClassLevelCopyable;
+		const copy:ClassLevelCopyable = Copier.copy(classLevelCopyable);
 
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
@@ -83,7 +83,7 @@ public class CopierTest {
 
 	[Test]
 	public function testCopyWithPropertyLevelMetadata():void {
-		const copy:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable) as PropertyLevelCopyable;
+		const copy:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable);
 
 		assertNotNull(copy);
 		assertNull(copy.property1);

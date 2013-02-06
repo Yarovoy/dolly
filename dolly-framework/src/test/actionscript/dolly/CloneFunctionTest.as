@@ -43,7 +43,7 @@ public class CloneFunctionTest {
 
 	[Test]
 	public function testCloneWithClassLevelMetadata():void {
-		const classLevelClone:ClassLevelCloneable = clone(classLevelCloneable) as ClassLevelCloneable;
+		const classLevelClone:ClassLevelCloneable = clone(classLevelCloneable);
 
 		assertNotNull(classLevelClone);
 		assertNotNull(classLevelClone.property1);
@@ -58,7 +58,7 @@ public class CloneFunctionTest {
 
 	[Test]
 	public function testCloneWithPropertyLevelMetadata():void {
-		const propertyLevelClone:PropertyLevelCloneable = clone(propertyLevelCloneable) as PropertyLevelCloneable;
+		const propertyLevelClone:PropertyLevelCloneable = clone(propertyLevelCloneable);
 
 		assertNotNull(propertyLevelClone);
 		assertNull(propertyLevelClone.property1);
