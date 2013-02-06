@@ -1,6 +1,7 @@
 package dolly {
 import dolly.core.dolly_internal;
 import dolly.data.ClassLevelCloneable;
+import dolly.data.ClassLevelCopyableCloneable;
 import dolly.data.PropertyLevelCloneable;
 
 import org.as3commons.reflect.Field;
@@ -16,6 +17,9 @@ public class ClonerTest {
 	private var classLevelCloneable:ClassLevelCloneable;
 	private var classLevelCloneableType:Type;
 
+	private var classLevelCopyableCloneable:ClassLevelCopyableCloneable;
+	private var classLevelCopyableCloneableType:Type;
+
 	private var propertyLevelCloneable:PropertyLevelCloneable;
 	private var propertyLevelCloneableType:Type;
 
@@ -26,6 +30,14 @@ public class ClonerTest {
 		classLevelCloneable.property2 = "value 2";
 		classLevelCloneable.property3 = "value 3";
 		classLevelCloneable.writableField = "value 4";
+		classLevelCloneableType = Type.forInstance(classLevelCloneable);
+
+		classLevelCopyableCloneable = new ClassLevelCopyableCloneable();
+		classLevelCopyableCloneable.property1 = "value 1";
+		classLevelCopyableCloneable.property2 = "value 2";
+		classLevelCopyableCloneable.property3 = "value 3";
+		classLevelCopyableCloneable.writableField = "value 4";
+		classLevelCopyableCloneableType = Type.forInstance(classLevelCopyableCloneable);
 
 		propertyLevelCloneable = new PropertyLevelCloneable();
 		propertyLevelCloneable.property1 = "value 1";
@@ -33,15 +45,18 @@ public class ClonerTest {
 		propertyLevelCloneable.property3 = "value 3";
 		propertyLevelCloneable.writableField = "value 4";
 
-		classLevelCloneableType = Type.forInstance(classLevelCloneable);
 		propertyLevelCloneableType = Type.forInstance(propertyLevelCloneable);
 	}
 
 	[After]
 	public function after():void {
 		classLevelCloneable = null;
-		propertyLevelCloneable = null;
 		classLevelCloneableType = null;
+
+		classLevelCopyableCloneable = null;
+		classLevelCopyableCloneableType = null;
+
+		propertyLevelCloneable = null;
 		propertyLevelCloneableType = null;
 	}
 
@@ -49,6 +64,10 @@ public class ClonerTest {
 	public function testGetCloneableFieldsForType():void {
 		var cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCloneableType);
 
+		assertNotNull(cloneableFields);
+		assertEquals(4, cloneableFields.length);
+
+		cloneableFields = Cloner.getCloneableFieldsForType(classLevelCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 
