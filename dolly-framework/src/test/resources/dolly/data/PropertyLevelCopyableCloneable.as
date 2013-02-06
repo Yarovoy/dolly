@@ -2,6 +2,18 @@ package dolly.data {
 
 public class PropertyLevelCopyableCloneable {
 
+	[Copyable]
+	[Cloneable]
+	public static var staticProperty1:String;
+
+	[Copyable]
+	[Cloneable]
+	public static var staticProperty2:String;
+
+	[Copyable]
+	[Cloneable]
+	public static var staticProperty3:String;
+
 	private var _writableField:String;
 	private var _readOnlyField:String = "read-only field value";
 
