@@ -1,6 +1,7 @@
 package dolly {
 import dolly.core.dolly_internal;
 import dolly.data.ClassLevelCloneable;
+import dolly.data.ClassLevelCloneableSubclass;
 import dolly.data.ClassLevelCopyableCloneable;
 import dolly.data.PropertyLevelCloneable;
 import dolly.data.PropertyLevelCopyableCloneable;
@@ -17,6 +18,9 @@ public class ClonerTest {
 
 	private var classLevelCloneable:ClassLevelCloneable;
 	private var classLevelCloneableType:Type;
+
+	private var classLevelCloneableSubclass:ClassLevelCloneableSubclass;
+	private var classLevelCloneableSubclassType:Type;
 
 	private var classLevelCopyableCloneable:ClassLevelCopyableCloneable;
 	private var classLevelCopyableCloneableType:Type;
@@ -43,6 +47,16 @@ public class ClonerTest {
 		classLevelCopyableCloneable.writableField = "value 4";
 		classLevelCopyableCloneableType = Type.forInstance(classLevelCopyableCloneable);
 
+		classLevelCloneableSubclass = new ClassLevelCloneableSubclass();
+		classLevelCloneableSubclass.property1 = "value 1";
+		classLevelCloneableSubclass.property2 = "value 2";
+		classLevelCloneableSubclass.property3 = "value 3";
+		classLevelCloneableSubclass.property4 = "value 4";
+		classLevelCloneableSubclass.property5 = "value 5";
+		classLevelCloneableSubclass.writableField = "value 6";
+		classLevelCloneableSubclass.writableField2 = "value 7";
+		classLevelCloneableSubclassType = Type.forInstance(classLevelCloneableSubclass);
+
 		propertyLevelCloneable = new PropertyLevelCloneable();
 		propertyLevelCloneable.property1 = "value 1";
 		propertyLevelCloneable.property2 = "value 2";
@@ -66,6 +80,9 @@ public class ClonerTest {
 		classLevelCopyableCloneable = null;
 		classLevelCopyableCloneableType = null;
 
+		classLevelCloneableSubclass = null;
+		classLevelCloneableSubclassType = null;
+
 		propertyLevelCloneable = null;
 		propertyLevelCloneableType = null;
 
@@ -78,6 +95,13 @@ public class ClonerTest {
 		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
+	}
+
+	[Test]
+	public function testGetCloneableFieldsForTypeClassLevelCloneableSubclass():void {
+		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCloneableSubclassType);
+		assertNotNull(cloneableFields);
+		assertEquals(7, cloneableFields.length);
 	}
 
 	[Test]
@@ -113,6 +137,26 @@ public class ClonerTest {
 		assertEquals(clone.property3, classLevelCloneable.property3);
 		assertNotNull(clone.writableField);
 		assertEquals(clone.writableField, classLevelCloneable.writableField);
+	}
+
+	[Test]
+	public function testCloneClassLevelCloneableSubclass():void {
+		const clone:ClassLevelCloneableSubclass = Cloner.clone(classLevelCloneableSubclass);
+		assertNotNull(clone);
+		assertNotNull(clone.property1);
+		assertEquals(clone.property1, classLevelCloneableSubclass.property1);
+		assertNotNull(clone.property2);
+		assertEquals(clone.property2, classLevelCloneableSubclass.property2);
+		assertNotNull(clone.property3);
+		assertEquals(clone.property3, classLevelCloneableSubclass.property3);
+		assertNotNull(clone.property4);
+		assertEquals(clone.property4, classLevelCloneableSubclass.property4);
+		assertNotNull(clone.property5);
+		assertEquals(clone.property5, classLevelCloneableSubclass.property5);
+		assertNotNull(clone.writableField);
+		assertEquals(clone.writableField, classLevelCloneableSubclass.writableField);
+		assertNotNull(clone.writableField2);
+		assertEquals(clone.writableField2, classLevelCloneableSubclass.writableField2);
 	}
 
 	[Test]
