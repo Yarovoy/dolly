@@ -116,28 +116,31 @@ public class CopierTest {
 	}
 
 	[Test]
-	public function testCopyWithClassLevelMetadata():void {
-		const copy1:ClassLevelCopyable = Copier.copy(classLevelCopyable);
-		assertNotNull(copy1);
-		assertNotNull(copy1.property1);
-		assertEquals(copy1.property1, classLevelCopyable.property1);
-		assertNotNull(copy1.property2);
-		assertEquals(copy1.property2, classLevelCopyable.property2);
-		assertNotNull(copy1.property3);
-		assertEquals(copy1.property3, classLevelCopyable.property3);
-		assertNotNull(copy1.writableField);
-		assertEquals(copy1.writableField, classLevelCopyable.writableField);
+	public function testCopyClassLevelCopyable():void {
+		const copy:ClassLevelCopyable = Copier.copy(classLevelCopyable);
+		assertNotNull(copy);
+		assertNotNull(copy.property1);
+		assertEquals(copy.property1, classLevelCopyable.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
+	}
 
-		const copy2:ClassLevelCopyableCloneable = Copier.copy(classLevelCopyableCloneable);
-		assertNotNull(copy2);
-		assertNotNull(copy2.property1);
-		assertEquals(copy2.property1, classLevelCopyable.property1);
-		assertNotNull(copy2.property2);
-		assertEquals(copy2.property2, classLevelCopyable.property2);
-		assertNotNull(copy2.property3);
-		assertEquals(copy2.property3, classLevelCopyable.property3);
-		assertNotNull(copy2.writableField);
-		assertEquals(copy2.writableField, classLevelCopyable.writableField);
+	[Test]
+	public function testCopyClassLevelCopyableCloneable():void {
+		const copy:ClassLevelCopyableCloneable = Copier.copy(classLevelCopyableCloneable);
+		assertNotNull(copy);
+		assertNotNull(copy.property1);
+		assertEquals(copy.property1, classLevelCopyable.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
 	}
 
 	[Test]
