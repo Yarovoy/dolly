@@ -74,26 +74,35 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testGetCloneableFieldsForType():void {
-		var cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCloneableType);
-		assertNotNull(cloneableFields);
-		assertEquals(4, cloneableFields.length);
-
-		cloneableFields = Cloner.getCloneableFieldsForType(classLevelCloneableType);
-		assertNotNull(cloneableFields);
-		assertEquals(4, cloneableFields.length);
-
-		cloneableFields = Cloner.getCloneableFieldsForType(propertyLevelCloneableType);
-		assertNotNull(cloneableFields);
-		assertEquals(3, cloneableFields.length);
-
-		cloneableFields = Cloner.getCloneableFieldsForType(propertyLevelCopyableCloneableType);
+	public function testGetCloneableFieldsForTypeClassLevelCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 	}
 
 	[Test]
-	public function testCloneWithClassLevelMetadata():void {
+	public function testGetCloneableFieldsForTypeClassLevelCopyableCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(classLevelCopyableCloneableType);
+		assertNotNull(cloneableFields);
+		assertEquals(4, cloneableFields.length);
+	}
+
+	[Test]
+	public function testGetCloneableFieldsForTypePropertyLevelCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(propertyLevelCloneableType);
+		assertNotNull(cloneableFields);
+		assertEquals(3, cloneableFields.length);
+	}
+
+	[Test]
+	public function testGetCloneableFieldsForTypePropertyLevelCopyableCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.getCloneableFieldsForType(propertyLevelCopyableCloneableType);
+		assertNotNull(cloneableFields);
+		assertEquals(4, cloneableFields.length);
+	}
+
+	[Test]
+	public function testWithClassLevelCloneable():void {
 		const clone1:ClassLevelCloneable = Cloner.clone(classLevelCloneable);
 		assertNotNull(clone1);
 		assertNotNull(clone1.property1);
