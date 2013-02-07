@@ -144,26 +144,29 @@ public class CopierTest {
 	}
 
 	[Test]
-	public function testCopyWithPropertyLevelMetadata():void {
-		const copy1:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable);
-		assertNotNull(copy1);
-		assertNull(copy1.property1);
-		assertNotNull(copy1.property2);
-		assertEquals(copy1.property2, classLevelCopyable.property2);
-		assertNotNull(copy1.property3);
-		assertEquals(copy1.property3, classLevelCopyable.property3);
-		assertNotNull(copy1.writableField);
-		assertEquals(copy1.writableField, classLevelCopyable.writableField);
+	public function testCopyPropertyLevelCopyable():void {
+		const copy:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable);
+		assertNotNull(copy);
+		assertNull(copy.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
+	}
 
-		const copy2:PropertyLevelCopyableCloneable = Copier.copy(propertyLevelCopyableCloneable);
-		assertNotNull(copy2);
-		assertNull(copy2.property1);
-		assertNotNull(copy2.property2);
-		assertEquals(copy2.property2, classLevelCopyable.property2);
-		assertNotNull(copy2.property3);
-		assertEquals(copy2.property3, classLevelCopyable.property3);
-		assertNotNull(copy2.writableField);
-		assertEquals(copy2.writableField, classLevelCopyable.writableField);
+	[Test]
+	public function testCopyPropertyLevelCopyableCloneable():void {
+		const copy:PropertyLevelCopyableCloneable = Copier.copy(propertyLevelCopyableCloneable);
+		assertNotNull(copy);
+		assertNull(copy.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyable.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyable.property3);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField);
 	}
 }
 }
