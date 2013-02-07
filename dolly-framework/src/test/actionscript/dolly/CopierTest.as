@@ -74,31 +74,40 @@ public class CopierTest {
 	}
 
 	[Test]
-	public function testGetCopyableFieldsForType():void {
-		var copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(classLevelCopyableType);
+	public function testGetCopyableFieldsForTypeClassLevelCopyable():void {
+		const copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(classLevelCopyableType);
 		assertNotNull(copyableFields);
 		assertEquals(4, copyableFields.length);
 		assertNotNull(copyableFields[0]);
 		assertNotNull(copyableFields[1]);
 		assertNotNull(copyableFields[2]);
 		assertNotNull(copyableFields[3]);
+	}
 
-		copyableFields = Copier.getCopyableFieldsForType(classLevelCopyableCloneableType);
+	[Test]
+	public function testGetCopyableFieldsForTypeClassLevelCopyableCloneable():void {
+		const copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(classLevelCopyableCloneableType);
 		assertNotNull(copyableFields);
 		assertEquals(4, copyableFields.length);
 		assertNotNull(copyableFields[0]);
 		assertNotNull(copyableFields[1]);
 		assertNotNull(copyableFields[2]);
 		assertNotNull(copyableFields[3]);
+	}
 
-		copyableFields = Copier.getCopyableFieldsForType(propertyLevelCopyableType);
+	[Test]
+	public function testGetCopyableFieldsForTypePropertyLevelCopyable():void {
+		const copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(propertyLevelCopyableType);
 		assertNotNull(copyableFields);
 		assertEquals(3, copyableFields.length);
 		assertNotNull(copyableFields[0]);
 		assertNotNull(copyableFields[1]);
 		assertNotNull(copyableFields[2]);
+	}
 
-		copyableFields = Copier.getCopyableFieldsForType(propertyLevelCopyableCloneableType);
+	[Test]
+	public function testGetCopyableFieldsForTypePropertyLevelCopyableCloneable():void {
+		const copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(propertyLevelCopyableCloneableType);
 		assertNotNull(copyableFields);
 		assertEquals(3, copyableFields.length);
 		assertNotNull(copyableFields[0]);
