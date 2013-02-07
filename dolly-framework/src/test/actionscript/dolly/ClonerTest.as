@@ -102,28 +102,31 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testWithClassLevelCloneable():void {
-		const clone1:ClassLevelCloneable = Cloner.clone(classLevelCloneable);
-		assertNotNull(clone1);
-		assertNotNull(clone1.property1);
-		assertEquals(clone1.property1, classLevelCloneable.property1);
-		assertNotNull(clone1.property2);
-		assertEquals(clone1.property2, classLevelCloneable.property2);
-		assertNotNull(clone1.property3);
-		assertEquals(clone1.property3, classLevelCloneable.property3);
-		assertNotNull(clone1.writableField);
-		assertEquals(clone1.writableField, classLevelCloneable.writableField);
+	public function testCloneClassLevelCloneable():void {
+		const clone:ClassLevelCloneable = Cloner.clone(classLevelCloneable);
+		assertNotNull(clone);
+		assertNotNull(clone.property1);
+		assertEquals(clone.property1, classLevelCloneable.property1);
+		assertNotNull(clone.property2);
+		assertEquals(clone.property2, classLevelCloneable.property2);
+		assertNotNull(clone.property3);
+		assertEquals(clone.property3, classLevelCloneable.property3);
+		assertNotNull(clone.writableField);
+		assertEquals(clone.writableField, classLevelCloneable.writableField);
+	}
 
-		const clone2:ClassLevelCopyableCloneable = Cloner.clone(classLevelCopyableCloneable);
-		assertNotNull(clone2);
-		assertNotNull(clone2.property1);
-		assertEquals(clone2.property1, classLevelCloneable.property1);
-		assertNotNull(clone2.property2);
-		assertEquals(clone2.property2, classLevelCloneable.property2);
-		assertNotNull(clone2.property3);
-		assertEquals(clone2.property3, classLevelCloneable.property3);
-		assertNotNull(clone2.writableField);
-		assertEquals(clone2.writableField, classLevelCloneable.writableField);
+	[Test]
+	public function testCloneClassLevelCopyableCloneable():void {
+		const clone:ClassLevelCopyableCloneable = Cloner.clone(classLevelCopyableCloneable);
+		assertNotNull(clone);
+		assertNotNull(clone.property1);
+		assertEquals(clone.property1, classLevelCloneable.property1);
+		assertNotNull(clone.property2);
+		assertEquals(clone.property2, classLevelCloneable.property2);
+		assertNotNull(clone.property3);
+		assertEquals(clone.property3, classLevelCloneable.property3);
+		assertNotNull(clone.writableField);
+		assertEquals(clone.writableField, classLevelCloneable.writableField);
 	}
 
 	[Test]
