@@ -2,6 +2,7 @@ package dolly {
 import dolly.core.dolly_internal;
 import dolly.data.ClassLevelCopyable;
 import dolly.data.ClassLevelCopyableCloneable;
+import dolly.data.ClassLevelCopyableSubclass;
 import dolly.data.PropertyLevelCopyable;
 import dolly.data.PropertyLevelCopyableCloneable;
 
@@ -17,6 +18,9 @@ public class CopierTest {
 
 	private var classLevelCopyable:ClassLevelCopyable;
 	private var classLevelCopyableType:Type;
+
+	private var classLevelCopyableSubclass:ClassLevelCopyableSubclass;
+	private var classLevelCopyableSubclassType:Type;
 
 	private var classLevelCopyableCloneable:ClassLevelCopyableCloneable;
 	private var classLevelCopyableCloneableType:Type;
@@ -35,6 +39,16 @@ public class CopierTest {
 		classLevelCopyable.property3 = "value 3";
 		classLevelCopyable.writableField = "value 4";
 		classLevelCopyableType = Type.forInstance(classLevelCopyable);
+
+		classLevelCopyableSubclass = new ClassLevelCopyableSubclass();
+		classLevelCopyableSubclass.property1 = "value 1";
+		classLevelCopyableSubclass.property2 = "value 2";
+		classLevelCopyableSubclass.property3 = "value 3";
+		classLevelCopyableSubclass.property4 = "value4";
+		classLevelCopyableSubclass.property5 = "value 5";
+		classLevelCopyableSubclass.writableField = "value 6";
+		classLevelCopyableSubclass.writableField2 = "value 7";
+		classLevelCopyableSubclassType = Type.forInstance(classLevelCopyableSubclass);
 
 		classLevelCopyableCloneable = new ClassLevelCopyableCloneable();
 		classLevelCopyableCloneable.property1 = "value 1";
@@ -63,6 +77,9 @@ public class CopierTest {
 		classLevelCopyable = null;
 		classLevelCopyableType = null;
 
+		classLevelCopyableSubclass = null;
+		classLevelCopyableSubclassType = null;
+
 		classLevelCopyableCloneable = null;
 		classLevelCopyableCloneableType = null;
 
@@ -82,6 +99,20 @@ public class CopierTest {
 		assertNotNull(copyableFields[1]);
 		assertNotNull(copyableFields[2]);
 		assertNotNull(copyableFields[3]);
+	}
+
+	[Test]
+	public function testGetCopyableFieldsForTypeClassLevelCopyableSubclass():void {
+		const copyableFields:Vector.<Field> = Copier.getCopyableFieldsForType(classLevelCopyableSubclassType);
+		assertNotNull(copyableFields);
+		assertEquals(7, copyableFields.length);
+		assertNotNull(copyableFields[0]);
+		assertNotNull(copyableFields[1]);
+		assertNotNull(copyableFields[2]);
+		assertNotNull(copyableFields[3]);
+		assertNotNull(copyableFields[4]);
+		assertNotNull(copyableFields[5]);
+		assertNotNull(copyableFields[6]);
 	}
 
 	[Test]
@@ -127,6 +158,26 @@ public class CopierTest {
 		assertEquals(copy.property3, classLevelCopyable.property3);
 		assertNotNull(copy.writableField);
 		assertEquals(copy.writableField, classLevelCopyable.writableField);
+	}
+
+	[Test]
+	public function testCopyClassLevelCopyableSubclass():void {
+		const copy:ClassLevelCopyableSubclass = Copier.copy(classLevelCopyableSubclass);
+		assertNotNull(copy);
+		assertNotNull(copy.property1);
+		assertEquals(copy.property1, classLevelCopyableSubclass.property1);
+		assertNotNull(copy.property2);
+		assertEquals(copy.property2, classLevelCopyableSubclass.property2);
+		assertNotNull(copy.property3);
+		assertEquals(copy.property3, classLevelCopyableSubclass.property3);
+		assertNotNull(copy.property4);
+		assertEquals(copy.property4, classLevelCopyableSubclass.property4);
+		assertNotNull(copy.property5);
+		assertEquals(copy.property5, classLevelCopyableSubclass.property5);
+		assertNotNull(copy.writableField);
+		assertEquals(copy.writableField, classLevelCopyableSubclass.writableField);
+		assertNotNull(copy.writableField2);
+		assertEquals(copy.writableField2, classLevelCopyableSubclass.writableField2);
 	}
 
 	[Test]
