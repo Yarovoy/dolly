@@ -18,6 +18,13 @@ public class Cloner {
 	}
 
 	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
+		if (!isTypeCloneable(type)) {
+			throw new CloningError(
+					CloningError.CLASS_IS_NOT_CLONEABLE_MESSAGE,
+					CloningError.CLASS_IS_NOT_CLONEABLE_CODE
+			);
+		}
+
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		for each(var field:Field in type.properties) {

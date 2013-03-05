@@ -1,9 +1,9 @@
 package dolly {
 
 import dolly.core.dolly_internal;
+import dolly.data.ClassLevelCopyableCloneable;
 import dolly.data.CloneableClass;
 import dolly.data.CloneableSubclass;
-import dolly.data.ClassLevelCopyableCloneable;
 import dolly.data.PropertyLevelCloneable;
 import dolly.data.PropertyLevelCopyableCloneable;
 
@@ -111,18 +111,22 @@ public class ClonerTest {
 		assertEquals(4, cloneableFields.length);
 	}
 
-	[Test]
+	/**
+	 * <code>Cloner.clone()</code> method will throw <code>CloningError</code> in this case
+	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 */
+	[Test(expects="dolly.core.errors.CloningError")]
 	public function testFindAllWritableFieldsForTypePropertyLevelCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(propertyLevelCloneableType);
-		assertNotNull(cloneableFields);
-		assertEquals(3, cloneableFields.length);
+		Cloner.findAllWritableFieldsForType(propertyLevelCloneableType);
 	}
 
-	[Test]
+	/**
+	 * <code>Cloner.clone()</code> method will throw <code>CloningError</code> in this case
+	 * because <code>PropertyLevelCopyableCloneable</code> class is not cloneable indeed.
+	 */
+	[Test(expects="dolly.core.errors.CloningError")]
 	public function testFindAllWritableFieldsForTypePropertyLevelCopyableCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(propertyLevelCopyableCloneableType);
-		assertNotNull(cloneableFields);
-		assertEquals(4, cloneableFields.length);
+		Cloner.findAllWritableFieldsForType(propertyLevelCopyableCloneableType);
 	}
 
 	[Test]
