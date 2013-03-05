@@ -20,11 +20,7 @@ public class Cloner {
 	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
-		for each(var field:Field in type.fields) {
-			if (field.isStatic) {
-				continue;
-			}
-
+		for each(var field:Field in type.properties) {
 			if (!(field is Accessor) || (field as Accessor).access == AccessorAccess.READ_WRITE) {
 				result.push(field);
 			}
