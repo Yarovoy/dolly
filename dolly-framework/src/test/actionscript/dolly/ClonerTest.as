@@ -91,36 +91,36 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testFindAllCloneableFieldsForTypeClassLevelCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllCloneableFieldsForType(classLevelCloneableType);
+	public function testFindAllWritableFieldsForTypeClassLevelCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(classLevelCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 	}
 
 	[Test]
-	public function testFindAllCloneableFieldsForTypeClassLevelCloneableSubclass():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllCloneableFieldsForType(classLevelCloneableSubclassType);
+	public function testFindAllWritableFieldsForTypeClassLevelCloneableSubclass():void {
+		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(classLevelCloneableSubclassType);
 		assertNotNull(cloneableFields);
 		assertEquals(7, cloneableFields.length);
 	}
 
 	[Test]
-	public function testFindAllCloneableFieldsForTypeClassLevelCopyableCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllCloneableFieldsForType(classLevelCopyableCloneableType);
+	public function testFindAllWritableFieldsForTypeClassLevelCopyableCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(classLevelCopyableCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 	}
 
 	[Test]
-	public function testFindAllCloneableFieldsForTypePropertyLevelCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllCloneableFieldsForType(propertyLevelCloneableType);
+	public function testFindAllWritableFieldsForTypePropertyLevelCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(propertyLevelCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(3, cloneableFields.length);
 	}
 
 	[Test]
-	public function testFindAllCloneableFieldsForTypePropertyLevelCopyableCloneable():void {
-		const cloneableFields:Vector.<Field> = Cloner.findAllCloneableFieldsForType(propertyLevelCopyableCloneableType);
+	public function testFindAllWritableFieldsForTypePropertyLevelCopyableCloneable():void {
+		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(propertyLevelCopyableCloneableType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 	}
