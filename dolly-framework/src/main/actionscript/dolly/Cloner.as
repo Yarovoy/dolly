@@ -26,7 +26,7 @@ public class Cloner {
 				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
 	}
 
-	dolly_internal static function getCloneableFieldsForType(type:Type):Vector.<Field> {
+	dolly_internal static function findAllCloneableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		var variable:Variable;
@@ -60,7 +60,7 @@ public class Cloner {
 
 		// Find all public writable fields in a hierarchy of a source object
 		// and assign their values to a clone object.
-		const fieldsToClone:Vector.<Field> = getCloneableFieldsForType(type);
+		const fieldsToClone:Vector.<Field> = findAllCloneableFieldsForType(type);
 		var name:String;
 		for each(var field:Field in fieldsToClone) {
 			name = field.name;
