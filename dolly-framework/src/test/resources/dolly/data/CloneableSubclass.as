@@ -1,14 +1,14 @@
 package dolly.data {
 
 [Cloneable]
-public class ClassLevelCloneableSubclass extends ClassLevelCloneable {
+public class CloneableSubclass extends CloneableClass {
 
 	private var _writableField2:String;
 
 	public var property4:String;
 	public var property5:String;
 
-	public function ClassLevelCloneableSubclass() {
+	public function CloneableSubclass() {
 		super();
 	}
 
