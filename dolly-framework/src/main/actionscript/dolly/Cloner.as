@@ -77,6 +77,8 @@ public class Cloner {
 
 		const clone:* = new (type.clazz)();
 
+		// Find all public writable fields in a hierarchy of a source object
+		// and assign their values to a clone object.
 		const fieldsToClone:Vector.<Field> = getCloneableFieldsForType(type);
 		var name:String;
 		for each(var field:Field in fieldsToClone) {
