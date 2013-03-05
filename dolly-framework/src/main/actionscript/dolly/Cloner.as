@@ -5,9 +5,9 @@ import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
 
 import org.as3commons.reflect.Accessor;
+import org.as3commons.reflect.AccessorAccess;
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
-import org.as3commons.reflect.Variable;
 
 use namespace dolly_internal;
 
@@ -17,44 +17,16 @@ public class Cloner {
 		return type.hasMetadata(MetadataName.CLONEABLE);
 	}
 
-	private static function isVariableCloneable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
-		return !variable.isStatic && (skipMetadataChecking || variable.hasMetadata(MetadataName.CLONEABLE));
-	}
-
-	private static function isAccessorCloneable(accessor:Accessor, skipMetadataChecking:Boolean = true):Boolean {
-		return !accessor.isStatic && accessor.isReadable() && accessor.isWriteable() &&
-				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
-	}
-
-	dolly_internal static function getWritableFieldsOfType(type:Type):Vector.<Field> {
+	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
-		var variable:Variable;
-		var accessor:Accessor;
-
-		for each(variable in type.variables) {
-			if (isVariableCloneable(variable)) {
-				result.push(variable);
+		for each(var field:Field in type.fields) {
+			if (field.isStatic) {
+				continue;
 			}
-		}
-		for each(accessor in type.accessors) {
-			if (isAccessorCloneable(accessor)) {
-				result.push(accessor);
-			}
-		}
 
-		return result;
-	}
-
-	dolly_internal static function findAllCloneableFieldsForType(type:Type):Vector.<Field> {
-		const result:Vector.<Field> = getWritableFieldsOfType(type);
-
-		const superclassNames:Array = type.extendsClasses;
-		for each(var superclassName:String in superclassNames) {
-			var superclassType:Type = Type.forName(superclassName);
-			var superclassWritableFields:Vector.<Field> = getWritableFieldsOfType(superclassType);
-			if (superclassWritableFields.length > 0) {
-				result.concat(superclassWritableFields);
+			if (!(field is Accessor) || (field as Accessor).access == AccessorAccess.READ_WRITE) {
+				result.push(field);
 			}
 		}
 
@@ -75,7 +47,7 @@ public class Cloner {
 
 		// Find all public writable fields in a hierarchy of a source object
 		// and assign their values to a clone object.
-		const fieldsToClone:Vector.<Field> = findAllCloneableFieldsForType(type);
+		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 		var name:String;
 		for each(var field:Field in fieldsToClone) {
 			name = field.name;
