@@ -1,6 +1,7 @@
 package dolly {
 
 import dolly.core.dolly_internal;
+import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
 
 import org.as3commons.reflect.Accessor;
@@ -66,6 +67,14 @@ public class Cloner {
 
 	public static function clone(source:*):* {
 		const type:Type = Type.forInstance(source);
+
+		if (!isTypeCloneable(type)) {
+			throw new CloningError(
+					CloningError.CLASS_IS_NOT_CLONEABLE_MESSAGE,
+					CloningError.CLASS_IS_NOT_CLONEABLE_CODE
+			);
+		}
+
 		const clone:* = new (type.clazz)();
 
 		const fieldsToClone:Vector.<Field> = getCloneableFieldsForType(type);
