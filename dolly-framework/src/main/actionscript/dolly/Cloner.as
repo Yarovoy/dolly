@@ -49,6 +49,15 @@ public class Cloner {
 	dolly_internal static function findAllCloneableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = getWritableFieldsOfType(type);
 
+		const superclassNames:Array = type.extendsClasses;
+		for each(var superclassName:String in superclassNames) {
+			var superclassType:Type = Type.forName(superclassName);
+			var superclassWritableFields:Vector.<Field> = getWritableFieldsOfType(superclassType);
+			if (superclassWritableFields.length > 0) {
+				result.concat(superclassWritableFields);
+			}
+		}
+
 		return result;
 	}
 
