@@ -13,6 +13,10 @@ use namespace dolly_internal;
 
 public class Cloner {
 
+	private static function isTypeCloneable(type:Type):Boolean {
+		return type.hasMetadata(MetadataName.CLONEABLE);
+	}
+
 	private static function isVariableCloneable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
 		return !variable.isStatic && (skipMetadataChecking || variable.hasMetadata(MetadataName.CLONEABLE));
 	}
@@ -28,7 +32,7 @@ public class Cloner {
 		var variable:Variable;
 		var accessor:Accessor;
 
-		const isClassCloneable:Boolean = type.hasMetadata(MetadataName.CLONEABLE);
+		const isClassCloneable:Boolean = isTypeCloneable(type);
 		if (isClassCloneable) {
 			for each(variable in type.variables) {
 				if (isVariableCloneable(variable)) {
