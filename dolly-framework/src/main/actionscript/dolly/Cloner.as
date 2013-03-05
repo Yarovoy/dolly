@@ -26,7 +26,7 @@ public class Cloner {
 				(skipMetadataChecking || accessor.hasMetadata(MetadataName.CLONEABLE));
 	}
 
-	dolly_internal static function findAllCloneableFieldsForType(type:Type):Vector.<Field> {
+	dolly_internal static function getWritableFieldsOfType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		var variable:Variable;
@@ -42,6 +42,12 @@ public class Cloner {
 				result.push(accessor);
 			}
 		}
+
+		return result;
+	}
+
+	dolly_internal static function findAllCloneableFieldsForType(type:Type):Vector.<Field> {
+		const result:Vector.<Field> = getWritableFieldsOfType(type);
 
 		return result;
 	}
