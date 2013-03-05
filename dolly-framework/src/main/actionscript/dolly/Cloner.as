@@ -39,18 +39,11 @@ public class Cloner {
 	public static function clone(source:*):* {
 		const type:Type = Type.forInstance(source);
 
-		if (!isTypeCloneable(type)) {
-			throw new CloningError(
-					CloningError.CLASS_IS_NOT_CLONEABLE_MESSAGE,
-					CloningError.CLASS_IS_NOT_CLONEABLE_CODE
-			);
-		}
-
-		const clonedInstance:* = new (type.clazz)();
-
 		// Find all public writable fields in a hierarchy of a source object
 		// and assign their values to a clone object.
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
+		const clonedInstance:* = new (type.clazz)();
+
 		var name:String;
 		for each(var field:Field in fieldsToClone) {
 			name = field.name;
