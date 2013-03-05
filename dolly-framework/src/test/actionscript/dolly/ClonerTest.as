@@ -1,4 +1,5 @@
 package dolly {
+
 import dolly.core.dolly_internal;
 import dolly.data.ClassLevelCloneable;
 import dolly.data.ClassLevelCloneableSubclass;
@@ -10,7 +11,6 @@ import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;
-import org.flexunit.asserts.assertNull;
 
 use namespace dolly_internal;
 
@@ -173,31 +173,22 @@ public class ClonerTest {
 		assertEquals(clone.writableField, classLevelCloneable.writableField);
 	}
 
-	[Test]
+	/**
+	 * <code>Cloner.clone()</code> method will throw <code>CloningError</code> in this case
+	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 */
+	[Test(expects="dolly.core.errors.CloningError")]
 	public function testClonePropertyLevelCloneable():void {
-		const clone:PropertyLevelCloneable = Cloner.clone(propertyLevelCloneable);
-		assertNotNull(clone);
-		assertNull(clone.property1);
-		assertNotNull(clone.property2);
-		assertEquals(clone.property2, propertyLevelCloneable.property2);
-		assertNotNull(clone.property3);
-		assertEquals(clone.property3, propertyLevelCloneable.property3);
-		assertNotNull(clone.writableField);
-		assertEquals(clone.writableField, propertyLevelCloneable.writableField);
+		Cloner.clone(propertyLevelCloneable);
 	}
 
-	[Test]
+	/**
+	 * <code>Cloner.clone()</code> method will throw <code>CloningError</code> in this case
+	 * because <code>PropertyLevelCopyableCloneable</code> class is not cloneable indeed.
+	 */
+	[Test(expects="dolly.core.errors.CloningError")]
 	public function testClonePropertyLevelCopyableCloneable():void {
-		const clone:PropertyLevelCopyableCloneable = Cloner.clone(propertyLevelCopyableCloneable);
-		assertNotNull(clone);
-		assertNotNull(clone.property1);
-		assertEquals(clone.property1, propertyLevelCloneable.property1);
-		assertNotNull(clone.property2);
-		assertEquals(clone.property2, propertyLevelCloneable.property2);
-		assertNotNull(clone.property3);
-		assertEquals(clone.property3, propertyLevelCloneable.property3);
-		assertNotNull(clone.writableField);
-		assertEquals(clone.writableField, propertyLevelCloneable.writableField);
+		Cloner.clone(propertyLevelCopyableCloneable);
 	}
 }
 }

@@ -1,11 +1,11 @@
 package dolly {
+
 import dolly.data.ClassLevelCloneable;
 import dolly.data.PropertyLevelCloneable;
 
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertNotNull;
-import org.flexunit.asserts.assertNull;
 
 public class CloneFunctionTest {
 
@@ -56,18 +56,13 @@ public class CloneFunctionTest {
 		assertEquals(classLevelClone.writableField, classLevelCloneable.writableField);
 	}
 
-	[Test]
+	/**
+	 * Method <code>clone()</code> will throw <code>CloningError</code> in this case
+	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 */
+	[Test(expects="dolly.core.errors.CloningError")]
 	public function testCloneWithPropertyLevelMetadata():void {
-		const propertyLevelClone:PropertyLevelCloneable = clone(propertyLevelCloneable);
-
-		assertNotNull(propertyLevelClone);
-		assertNull(propertyLevelClone.property1);
-		assertNotNull(propertyLevelClone.property2);
-		assertEquals(propertyLevelClone.property2, propertyLevelCloneable.property2);
-		assertNotNull(propertyLevelClone.property3);
-		assertEquals(propertyLevelClone.property3, propertyLevelCloneable.property3);
-		assertNotNull(propertyLevelClone.writableField);
-		assertEquals(propertyLevelClone.writableField, propertyLevelCloneable.writableField);
+		clone(propertyLevelCloneable);
 	}
 }
 }
