@@ -91,14 +91,14 @@ public class ClonerTest {
 	}
 
 	[Test]
-	public function testFindAllWritableFieldsForTypeClassLevelCloneable():void {
+	public function testFindAllWritableFieldsForTypeCloneableClass():void {
 		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(cloneableClassType);
 		assertNotNull(cloneableFields);
 		assertEquals(4, cloneableFields.length);
 	}
 
 	[Test]
-	public function testFindAllWritableFieldsForTypeClassLevelCloneableSubclass():void {
+	public function testFindAllWritableFieldsForTypeCloneableSubclass():void {
 		const cloneableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(cloneableSubclassType);
 		assertNotNull(cloneableFields);
 		assertEquals(7, cloneableFields.length);
