@@ -39,7 +39,7 @@ public class Cloner {
 			);
 		}
 
-		const clone:* = new (type.clazz)();
+		const clonedInstance:* = new (type.clazz)();
 
 		// Find all public writable fields in a hierarchy of a source object
 		// and assign their values to a clone object.
@@ -47,10 +47,10 @@ public class Cloner {
 		var name:String;
 		for each(var field:Field in fieldsToClone) {
 			name = field.name;
-			clone[name] = source[name];
+			clonedInstance[name] = source[name];
 		}
 
-		return clone;
+		return clonedInstance;
 	}
 }
 }
