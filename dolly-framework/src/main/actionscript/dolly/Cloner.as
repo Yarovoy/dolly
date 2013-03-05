@@ -6,7 +6,6 @@ import dolly.core.metadata.MetadataName;
 
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.Field;
-import org.as3commons.reflect.IMetadataContainer;
 import org.as3commons.reflect.Type;
 import org.as3commons.reflect.Variable;
 
@@ -33,32 +32,14 @@ public class Cloner {
 		var variable:Variable;
 		var accessor:Accessor;
 
-		const isClassCloneable:Boolean = isTypeCloneable(type);
-		if (isClassCloneable) {
-			for each(variable in type.variables) {
-				if (isVariableCloneable(variable)) {
-					result.push(variable);
-				}
+		for each(variable in type.variables) {
+			if (isVariableCloneable(variable)) {
+				result.push(variable);
 			}
-			for each(accessor in type.accessors) {
-				if (isAccessorCloneable(accessor)) {
-					result.push(accessor);
-				}
-			}
-		} else {
-			const metadataContainers:Array = type.getMetadataContainers(MetadataName.CLONEABLE);
-			for each(var metadataContainer:IMetadataContainer in metadataContainers) {
-				if (metadataContainer is Variable) {
-					variable = metadataContainer as Variable;
-					if (isVariableCloneable(variable, false)) {
-						result.push(variable);
-					}
-				} else if (metadataContainer is Accessor) {
-					accessor = metadataContainer as Accessor;
-					if (isAccessorCloneable(accessor, false)) {
-						result.push(accessor);
-					}
-				}
+		}
+		for each(accessor in type.accessors) {
+			if (isAccessorCloneable(accessor)) {
+				result.push(accessor);
 			}
 		}
 
