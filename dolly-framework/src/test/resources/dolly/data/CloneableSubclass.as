@@ -3,6 +3,10 @@ package dolly.data {
 [Cloneable]
 public class CloneableSubclass extends CloneableClass {
 
+	public static var staticProperty1:String;
+	public static var staticProperty2:String;
+	public static var staticProperty3:String;
+
 	private var _writableField2:String;
 
 	public var property4:String;
