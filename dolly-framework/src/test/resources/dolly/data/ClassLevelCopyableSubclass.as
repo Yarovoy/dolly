@@ -1,7 +1,7 @@
 package dolly.data {
 
 [Copyable]
-public class ClassLevelCopyableSubclass extends ClassLevelCopyable {
+public class ClassLevelCopyableSubclass extends CopyableClass {
 
 	private var _writableField2:String;
 

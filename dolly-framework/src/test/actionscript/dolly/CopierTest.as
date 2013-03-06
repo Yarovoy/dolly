@@ -1,6 +1,6 @@
 package dolly {
 import dolly.core.dolly_internal;
-import dolly.data.ClassLevelCopyable;
+import dolly.data.CopyableClass;
 import dolly.data.CopyableCloneableClass;
 import dolly.data.ClassLevelCopyableSubclass;
 import dolly.data.PropertyLevelCopyable;
@@ -16,7 +16,7 @@ use namespace dolly_internal;
 
 public class CopierTest {
 
-	private var classLevelCopyable:ClassLevelCopyable;
+	private var classLevelCopyable:CopyableClass;
 	private var classLevelCopyableType:Type;
 
 	private var classLevelCopyableSubclass:ClassLevelCopyableSubclass;
@@ -33,7 +33,7 @@ public class CopierTest {
 
 	[Before]
 	public function before():void {
-		classLevelCopyable = new ClassLevelCopyable();
+		classLevelCopyable = new CopyableClass();
 		classLevelCopyable.property1 = "value 1";
 		classLevelCopyable.property2 = "value 2";
 		classLevelCopyable.property3 = "value 3";
@@ -144,7 +144,7 @@ public class CopierTest {
 
 	[Test]
 	public function testCopyClassLevelCopyable():void {
-		const copy:ClassLevelCopyable = Copier.copy(classLevelCopyable);
+		const copy:CopyableClass = Copier.copy(classLevelCopyable);
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyable.property1);

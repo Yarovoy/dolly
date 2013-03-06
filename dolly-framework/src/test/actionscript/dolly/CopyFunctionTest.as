@@ -1,5 +1,5 @@
 package dolly {
-import dolly.data.ClassLevelCopyable;
+import dolly.data.CopyableClass;
 import dolly.data.PropertyLevelCopyable;
 
 import org.as3commons.reflect.Type;
@@ -8,7 +8,7 @@ import org.flexunit.asserts.assertNotNull;
 import org.flexunit.asserts.assertNull;
 
 public class CopyFunctionTest {
-	private var classLevelCopyable:ClassLevelCopyable;
+	private var classLevelCopyable:CopyableClass;
 	private var classLevelCopyableType:Type;
 
 	private var propertyLevelCopyable:PropertyLevelCopyable;
@@ -16,7 +16,7 @@ public class CopyFunctionTest {
 
 	[Before]
 	public function before():void {
-		classLevelCopyable = new ClassLevelCopyable();
+		classLevelCopyable = new CopyableClass();
 		classLevelCopyable.property1 = "value 1";
 		classLevelCopyable.property2 = "value 2";
 		classLevelCopyable.property3 = "value 3";
@@ -43,7 +43,7 @@ public class CopyFunctionTest {
 
 	[Test]
 	public function testCopyWithClassLevelMetadata():void {
-		const classLevelCopy:ClassLevelCopyable = copy(classLevelCopyable);
+		const classLevelCopy:CopyableClass = copy(classLevelCopyable);
 
 		assertNotNull(classLevelCopy);
 		assertNotNull(classLevelCopy.property1);
