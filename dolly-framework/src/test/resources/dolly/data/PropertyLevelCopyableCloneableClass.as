@@ -4,18 +4,14 @@ public class PropertyLevelCopyableCloneableClass {
 
 	[Copyable]
 	[Cloneable]
-	public static var staticProperty1:String;
+	public static var staticProperty1:String = "Value of first-level static property.";
 
 	[Copyable]
 	[Cloneable]
-	private var _writableField1:String;
-
-	[Copyable]
-	[Cloneable]
-	private var _readOnlyField1:String = "read-only field value";
+	private var _writableField1:String = "Value of first-level writable field.";
 
 	[Cloneable]
-	public var property1:String;
+	public var property1:String = "Value of first-level public property.";
 
 	public function PropertyLevelCopyableCloneableClass() {
 	}
@@ -33,7 +29,7 @@ public class PropertyLevelCopyableCloneableClass {
 	[Copyable]
 	[Cloneable]
 	public function get readOnlyField1():String {
-		return _readOnlyField1;
+		return "Value of first-level read-only field.";
 	}
 }
 }
