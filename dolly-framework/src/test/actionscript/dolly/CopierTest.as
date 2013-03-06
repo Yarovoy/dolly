@@ -1,7 +1,7 @@
 package dolly {
 import dolly.core.dolly_internal;
 import dolly.data.ClassLevelCopyable;
-import dolly.data.ClassLevelCopyableCloneable;
+import dolly.data.CopyableCloneableClass;
 import dolly.data.ClassLevelCopyableSubclass;
 import dolly.data.PropertyLevelCopyable;
 import dolly.data.PropertyLevelCopyableCloneable;
@@ -22,7 +22,7 @@ public class CopierTest {
 	private var classLevelCopyableSubclass:ClassLevelCopyableSubclass;
 	private var classLevelCopyableSubclassType:Type;
 
-	private var classLevelCopyableCloneable:ClassLevelCopyableCloneable;
+	private var classLevelCopyableCloneable:CopyableCloneableClass;
 	private var classLevelCopyableCloneableType:Type;
 
 	private var propertyLevelCopyable:PropertyLevelCopyable;
@@ -50,7 +50,7 @@ public class CopierTest {
 		classLevelCopyableSubclass.writableField2 = "value 7";
 		classLevelCopyableSubclassType = Type.forInstance(classLevelCopyableSubclass);
 
-		classLevelCopyableCloneable = new ClassLevelCopyableCloneable();
+		classLevelCopyableCloneable = new CopyableCloneableClass();
 		classLevelCopyableCloneable.property1 = "value 1";
 		classLevelCopyableCloneable.property2 = "value 2";
 		classLevelCopyableCloneable.property3 = "value 3";
@@ -182,7 +182,7 @@ public class CopierTest {
 
 	[Test]
 	public function testCopyClassLevelCopyableCloneable():void {
-		const copy:ClassLevelCopyableCloneable = Copier.copy(classLevelCopyableCloneable);
+		const copy:CopyableCloneableClass = Copier.copy(classLevelCopyableCloneable);
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyable.property1);
