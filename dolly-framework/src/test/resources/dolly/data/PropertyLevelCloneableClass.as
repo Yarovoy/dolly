@@ -1,6 +1,6 @@
 package dolly.data {
 
-public class PropertyLevelCloneable {
+public class PropertyLevelCloneableClass {
 
 	public static var staticProperty1:String;
 
@@ -21,7 +21,7 @@ public class PropertyLevelCloneable {
 	[Cloneable]
 	public var property3:String;
 
-	public function PropertyLevelCloneable() {
+	public function PropertyLevelCloneableClass() {
 	}
 
 	[Cloneable]
