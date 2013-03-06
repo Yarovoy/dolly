@@ -18,9 +18,7 @@ public class CopyFunctionTest {
 	public function before():void {
 		classLevelCopyable = new CopyableClass();
 		classLevelCopyable.property1 = "value 1";
-		classLevelCopyable.property2 = "value 2";
-		classLevelCopyable.property3 = "value 3";
-		classLevelCopyable.writableField = "value 4";
+		classLevelCopyable.writableField1 = "value 4";
 
 		propertyLevelCopyable = new PropertyLevelCopyable();
 		propertyLevelCopyable.property1 = "value 1";
@@ -48,12 +46,8 @@ public class CopyFunctionTest {
 		assertNotNull(classLevelCopy);
 		assertNotNull(classLevelCopy.property1);
 		assertEquals(classLevelCopy.property1, classLevelCopyable.property1);
-		assertNotNull(classLevelCopy.property2);
-		assertEquals(classLevelCopy.property2, classLevelCopyable.property2);
-		assertNotNull(classLevelCopy.property3);
-		assertEquals(classLevelCopy.property3, classLevelCopyable.property3);
-		assertNotNull(classLevelCopy.writableField);
-		assertEquals(classLevelCopy.writableField, classLevelCopyable.writableField);
+		assertNotNull(classLevelCopy.writableField1);
+		assertEquals(classLevelCopy.writableField1, classLevelCopyable.writableField1);
 	}
 
 	[Test]
@@ -62,12 +56,8 @@ public class CopyFunctionTest {
 
 		assertNotNull(propertyLevelCopy);
 		assertNull(propertyLevelCopy.property1);
-		assertNotNull(propertyLevelCopy.property2);
-		assertEquals(propertyLevelCopy.property2, classLevelCopyable.property2);
-		assertNotNull(propertyLevelCopy.property3);
-		assertEquals(propertyLevelCopy.property3, classLevelCopyable.property3);
 		assertNotNull(propertyLevelCopy.writableField);
-		assertEquals(propertyLevelCopy.writableField, classLevelCopyable.writableField);
+		assertEquals(propertyLevelCopy.writableField, classLevelCopyable.writableField1);
 	}
 }
 }

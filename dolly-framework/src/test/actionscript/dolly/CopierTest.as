@@ -35,18 +35,14 @@ public class CopierTest {
 	public function before():void {
 		classLevelCopyable = new CopyableClass();
 		classLevelCopyable.property1 = "value 1";
-		classLevelCopyable.property2 = "value 2";
-		classLevelCopyable.property3 = "value 3";
-		classLevelCopyable.writableField = "value 4";
+		classLevelCopyable.writableField1 = "value 4";
 		classLevelCopyableType = Type.forInstance(classLevelCopyable);
 
 		classLevelCopyableSubclass = new ClassLevelCopyableSubclass();
 		classLevelCopyableSubclass.property1 = "value 1";
-		classLevelCopyableSubclass.property2 = "value 2";
-		classLevelCopyableSubclass.property3 = "value 3";
 		classLevelCopyableSubclass.property4 = "value4";
 		classLevelCopyableSubclass.property5 = "value 5";
-		classLevelCopyableSubclass.writableField = "value 6";
+		classLevelCopyableSubclass.writableField1 = "value 6";
 		classLevelCopyableSubclass.writableField2 = "value 7";
 		classLevelCopyableSubclassType = Type.forInstance(classLevelCopyableSubclass);
 
@@ -148,12 +144,8 @@ public class CopierTest {
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyable.property1);
-		assertNotNull(copy.property2);
-		assertEquals(copy.property2, classLevelCopyable.property2);
-		assertNotNull(copy.property3);
-		assertEquals(copy.property3, classLevelCopyable.property3);
-		assertNotNull(copy.writableField);
-		assertEquals(copy.writableField, classLevelCopyable.writableField);
+		assertNotNull(copy.writableField1);
+		assertEquals(copy.writableField1, classLevelCopyable.writableField1);
 	}
 
 	[Test]
@@ -162,16 +154,12 @@ public class CopierTest {
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyableSubclass.property1);
-		assertNotNull(copy.property2);
-		assertEquals(copy.property2, classLevelCopyableSubclass.property2);
-		assertNotNull(copy.property3);
-		assertEquals(copy.property3, classLevelCopyableSubclass.property3);
 		assertNotNull(copy.property4);
 		assertEquals(copy.property4, classLevelCopyableSubclass.property4);
 		assertNotNull(copy.property5);
 		assertEquals(copy.property5, classLevelCopyableSubclass.property5);
-		assertNotNull(copy.writableField);
-		assertEquals(copy.writableField, classLevelCopyableSubclass.writableField);
+		assertNotNull(copy.writableField1);
+		assertEquals(copy.writableField1, classLevelCopyableSubclass.writableField1);
 		assertNotNull(copy.writableField2);
 		assertEquals(copy.writableField2, classLevelCopyableSubclass.writableField2);
 	}
@@ -183,7 +171,7 @@ public class CopierTest {
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyable.property1);
 		assertNotNull(copy.writableField1);
-		assertEquals(copy.writableField1, classLevelCopyable.writableField);
+		assertEquals(copy.writableField1, classLevelCopyable.writableField1);
 	}
 
 	[Test]
@@ -191,12 +179,8 @@ public class CopierTest {
 		const copy:PropertyLevelCopyable = Copier.copy(propertyLevelCopyable);
 		assertNotNull(copy);
 		assertNull(copy.property1);
-		assertNotNull(copy.property2);
-		assertEquals(copy.property2, classLevelCopyable.property2);
-		assertNotNull(copy.property3);
-		assertEquals(copy.property3, classLevelCopyable.property3);
 		assertNotNull(copy.writableField);
-		assertEquals(copy.writableField, classLevelCopyable.writableField);
+		assertEquals(copy.writableField, classLevelCopyable.writableField1);
 	}
 
 	[Test]
@@ -205,7 +189,7 @@ public class CopierTest {
 		assertNotNull(copy);
 		assertNull(copy.property1);
 		assertNotNull(copy.writableField1);
-		assertEquals(copy.writableField1, classLevelCopyable.writableField);
+		assertEquals(copy.writableField1, classLevelCopyable.writableField1);
 	}
 }
 }
