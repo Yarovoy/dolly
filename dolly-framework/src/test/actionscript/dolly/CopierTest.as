@@ -4,7 +4,7 @@ import dolly.data.ClassLevelCopyable;
 import dolly.data.CopyableCloneableClass;
 import dolly.data.ClassLevelCopyableSubclass;
 import dolly.data.PropertyLevelCopyable;
-import dolly.data.PropertyLevelCopyableCloneable;
+import dolly.data.PropertyLevelCopyableCloneableClass;
 
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
@@ -28,7 +28,7 @@ public class CopierTest {
 	private var propertyLevelCopyable:PropertyLevelCopyable;
 	private var propertyLevelCopyableType:Type;
 
-	private var propertyLevelCopyableCloneable:PropertyLevelCopyableCloneable;
+	private var propertyLevelCopyableCloneable:PropertyLevelCopyableCloneableClass;
 	private var propertyLevelCopyableCloneableType:Type;
 
 	[Before]
@@ -52,9 +52,7 @@ public class CopierTest {
 
 		classLevelCopyableCloneable = new CopyableCloneableClass();
 		classLevelCopyableCloneable.property1 = "value 1";
-		classLevelCopyableCloneable.property2 = "value 2";
-		classLevelCopyableCloneable.property3 = "value 3";
-		classLevelCopyableCloneable.writableField = "value 4";
+		classLevelCopyableCloneable.writableField1 = "value 4";
 		classLevelCopyableCloneableType = Type.forInstance(classLevelCopyableCloneable);
 
 		propertyLevelCopyable = new PropertyLevelCopyable();
@@ -64,11 +62,9 @@ public class CopierTest {
 		propertyLevelCopyable.writableField = "value 4";
 		propertyLevelCopyableType = Type.forInstance(propertyLevelCopyable);
 
-		propertyLevelCopyableCloneable = new PropertyLevelCopyableCloneable();
+		propertyLevelCopyableCloneable = new PropertyLevelCopyableCloneableClass();
 		propertyLevelCopyableCloneable.property1 = "value 1";
-		propertyLevelCopyableCloneable.property2 = "value 2";
-		propertyLevelCopyableCloneable.property3 = "value 3";
-		propertyLevelCopyableCloneable.writableField = "value 4";
+		propertyLevelCopyableCloneable.writableField1 = "value 4";
 		propertyLevelCopyableCloneableType = Type.forInstance(propertyLevelCopyableCloneable);
 	}
 
@@ -186,12 +182,8 @@ public class CopierTest {
 		assertNotNull(copy);
 		assertNotNull(copy.property1);
 		assertEquals(copy.property1, classLevelCopyable.property1);
-		assertNotNull(copy.property2);
-		assertEquals(copy.property2, classLevelCopyable.property2);
-		assertNotNull(copy.property3);
-		assertEquals(copy.property3, classLevelCopyable.property3);
-		assertNotNull(copy.writableField);
-		assertEquals(copy.writableField, classLevelCopyable.writableField);
+		assertNotNull(copy.writableField1);
+		assertEquals(copy.writableField1, classLevelCopyable.writableField);
 	}
 
 	[Test]
@@ -209,15 +201,11 @@ public class CopierTest {
 
 	[Test]
 	public function testCopyPropertyLevelCopyableCloneable():void {
-		const copy:PropertyLevelCopyableCloneable = Copier.copy(propertyLevelCopyableCloneable);
+		const copy:PropertyLevelCopyableCloneableClass = Copier.copy(propertyLevelCopyableCloneable);
 		assertNotNull(copy);
 		assertNull(copy.property1);
-		assertNotNull(copy.property2);
-		assertEquals(copy.property2, classLevelCopyable.property2);
-		assertNotNull(copy.property3);
-		assertEquals(copy.property3, classLevelCopyable.property3);
-		assertNotNull(copy.writableField);
-		assertEquals(copy.writableField, classLevelCopyable.writableField);
+		assertNotNull(copy.writableField1);
+		assertEquals(copy.writableField1, classLevelCopyable.writableField);
 	}
 }
 }
