@@ -4,16 +4,11 @@ package dolly.data {
 [Copyable]
 public class CopyableCloneableClass {
 
-	public static var staticProperty1:String;
-	public static var staticProperty2:String;
-	public static var staticProperty3:String;
+	public static var staticProperty1:String = "Value of first-level static property.";
 
-	private var _writableField:String;
-	private var _readOnlyField:String = "read-only field value";
+	private var _writableField:String = "Value of first-level writable field.";
 
-	public var property1:String;
-	public var property2:String;
-	public var property3:String;
+	public var property1:String = "Value of first-level public property.";
 
 	public function CopyableCloneableClass() {
 	}
@@ -27,7 +22,7 @@ public class CopyableCloneableClass {
 	}
 
 	public function get readOnlyField():String {
-		return _readOnlyField;
+		return "Value of first-level read-only field.";
 	}
 }
 }
