@@ -7,7 +7,7 @@ import org.as3commons.reflect.Type;
 
 use namespace dolly_internal;
 
-public class CloningNotCloneableSubclass {
+public class CloningOfNotCloneableSubclass {
 
 	public var notCloneableSubclass:NotCloneableSubclass;
 	public var notCloneableSubclassType:Type;
