@@ -10,7 +10,7 @@ import org.flexunit.asserts.assertNotNull;
 
 use namespace dolly_internal;
 
-public class CloningOfCopyableCloneableClass {
+public class CloningOfCopyableCloneableClassTest {
 
 	private var copyableCloneableClass:CopyableCloneableClass;
 	private var copyableCloneableClassType:Type;
