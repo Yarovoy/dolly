@@ -28,7 +28,7 @@ public class CloningOfPropertyLevelCloneableClassTest {
 
 	/**
 	 * <code>Cloner.findingAllWritableFieldsForType()</code> method will throw <code>CloningError</code> in this case
-	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 * because <code>PropertyLevelCloneableClass</code> class is not cloneable indeed.
 	 */
 	[Test(expects="dolly.core.errors.CloningError")]
 	public function findingAllWritableFieldsForType():void {
@@ -37,7 +37,7 @@ public class CloningOfPropertyLevelCloneableClassTest {
 
 	/**
 	 * <code>Cloner.clone()</code> method will throw <code>CloningError</code> in this case
-	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 * because <code>PropertyLevelCloneableClass</code> class is not cloneable indeed.
 	 */
 	[Test(expects="dolly.core.errors.CloningError")]
 	public function cloningByCloner():void {
@@ -46,7 +46,7 @@ public class CloningOfPropertyLevelCloneableClassTest {
 
 	/**
 	 * Method <code>clone()</code> will throw <code>CloningError</code> in this case
-	 * because <code>PropertyLevelCloneable</code> class is not cloneable indeed.
+	 * because <code>PropertyLevelCloneableClass</code> class is not cloneable indeed.
 	 */
 	[Test(expects="dolly.core.errors.CloningError")]
 	public function cloningByCloneFunction():void {
