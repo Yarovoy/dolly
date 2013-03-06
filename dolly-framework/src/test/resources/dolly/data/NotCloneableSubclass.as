@@ -1,7 +1,6 @@
 package dolly.data {
 
-[Cloneable]
-public class CloneableSubclass extends CloneableClass {
+public class NotCloneableSubclass extends CloneableClass {
 
 	public static var staticProperty2:String = "Value of second-level static property.";
 
@@ -9,8 +8,7 @@ public class CloneableSubclass extends CloneableClass {
 
 	public var property2:String = "Value of second-level public property.";
 
-	public function CloneableSubclass() {
-		super();
+	public function NotCloneableSubclass() {
 	}
 
 	public function get writableField2():String {
@@ -24,6 +22,5 @@ public class CloneableSubclass extends CloneableClass {
 	public function get readOnlyField2():String {
 		return "Value of second-level read-only field.";
 	}
-
 }
 }
