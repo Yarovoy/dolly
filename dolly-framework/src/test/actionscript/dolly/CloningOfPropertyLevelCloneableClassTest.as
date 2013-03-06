@@ -15,8 +15,8 @@ public class CloningOfPropertyLevelCloneableClassTest {
 	[Before]
 	public function before():void {
 		propertyLevelCloneable = new PropertyLevelCloneableClass();
-		propertyLevelCloneable.property1 = "value 1";
-		propertyLevelCloneable.writableField1 = "value 4";
+		propertyLevelCloneable.property1 = "property1 value";
+		propertyLevelCloneable.writableField1 = "writableField1 value";
 		propertyLevelCloneableType = Type.forInstance(propertyLevelCloneable);
 	}
 
