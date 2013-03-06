@@ -33,7 +33,7 @@ public class CloningOfCloneableClassTest {
 	public function findingAllWritableFieldsForType():void {
 		const writableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(cloneableClassType);
 		assertNotNull(writableFields);
-		assertEquals(4, writableFields.length);
+		assertEquals(2, writableFields.length);
 	}
 
 	[Test]
