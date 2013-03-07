@@ -30,10 +30,12 @@ public class CopyingOfCopyableCloneableClassTest {
 	}
 
 	[Test]
-	public function findingAllWritableFieldsForType():void {
-		const writableFields:Vector.<Field> = Copier.findCopyableFieldsForType(copyableCloneableClassType);
-		assertNotNull(writableFields);
-		assertEquals(2, writableFields.length);
+	public function findingAllCopyableFieldsForType():void {
+		const copyableFields:Vector.<Field> = Copier.findCopyableFieldsForType(copyableCloneableClassType);
+		assertNotNull(copyableFields);
+		assertEquals(2, copyableFields.length);
+		assertNotNull(copyableFields[0]);
+		assertNotNull(copyableFields[1]);
 	}
 
 	[Test]
