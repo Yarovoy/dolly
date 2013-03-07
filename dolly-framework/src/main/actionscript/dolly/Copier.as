@@ -1,4 +1,5 @@
 package dolly {
+
 import dolly.core.dolly_internal;
 import dolly.core.metadata.MetadataName;
 
@@ -11,10 +12,6 @@ import org.as3commons.reflect.Variable;
 use namespace dolly_internal;
 
 public class Copier {
-
-	private static function isVariableCopyable(variable:Variable, skipMetadataChecking:Boolean = true):Boolean {
-		return !variable.isStatic && (skipMetadataChecking || variable.hasMetadata(MetadataName.COPYABLE));
-	}
 
 	private static function isAccessorCopyable(accessor:Accessor, skipMetadataChecking:Boolean = true):Boolean {
 		return !accessor.isStatic && accessor.isReadable() && accessor.isWriteable() &&
@@ -30,7 +27,7 @@ public class Copier {
 		const isTypeCloneable:Boolean = type.hasMetadata(MetadataName.COPYABLE);
 		if (isTypeCloneable) {
 			for each(variable in type.variables) {
-				if (isVariableCopyable(variable)) {
+				if (!variable.isStatic) {
 					result.push(variable);
 				}
 			}
@@ -44,7 +41,7 @@ public class Copier {
 			for each(var metadataContainer:IMetadataContainer in metadataContainers) {
 				if (metadataContainer is Variable) {
 					variable = metadataContainer as Variable;
-					if (isVariableCopyable(variable, false)) {
+					if (!variable.isStatic && variable.hasMetadata(MetadataName.COPYABLE)) {
 						result.push(variable);
 					}
 				} else if (metadataContainer is Accessor) {
