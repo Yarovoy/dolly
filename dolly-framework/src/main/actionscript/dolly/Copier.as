@@ -16,7 +16,7 @@ use namespace dolly_internal;
 
 public class Copier {
 
-	private static function getCopyableFieldsOfType(type:Type, foundFieldsMap:Dictionary):Vector.<Field> {
+	private static function getCopyableFieldsOfType(type:Type, foundFields:Dictionary):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		var variable:Variable;
@@ -25,16 +25,16 @@ public class Copier {
 		const isTypeCloneable:Boolean = type.hasMetadata(MetadataName.COPYABLE);
 		if (isTypeCloneable) {
 			for each(variable in type.variables) {
-				if (!foundFieldsMap[variable.name] && !variable.isStatic) {
-					foundFieldsMap[variable.name] = variable;
+				if (!foundFields[variable.name] && !variable.isStatic) {
+					foundFields[variable.name] = variable;
 					result.push(variable);
 				}
 			}
 			for each(accessor in type.accessors) {
-				if (!foundFieldsMap[accessor.name]
+				if (!foundFields[accessor.name]
 						&& !accessor.isStatic
 						&& accessor.access == AccessorAccess.READ_WRITE) {
-					foundFieldsMap[accessor.name] = accessor;
+					foundFields[accessor.name] = accessor;
 					result.push(accessor);
 				}
 			}
@@ -43,19 +43,19 @@ public class Copier {
 			for each(var metadataContainer:IMetadataContainer in metadataContainers) {
 				if (metadataContainer is Variable) {
 					variable = metadataContainer as Variable;
-					if (!foundFieldsMap[variable.name]
+					if (!foundFields[variable.name]
 							&& !variable.isStatic
 							&& variable.hasMetadata(MetadataName.COPYABLE)) {
-						foundFieldsMap[variable.name] = variable;
+						foundFields[variable.name] = variable;
 						result.push(variable);
 					}
 				} else if (metadataContainer is Accessor) {
 					accessor = metadataContainer as Accessor;
-					if (!foundFieldsMap[accessor.name]
+					if (!foundFields[accessor.name]
 							&& !accessor.isStatic
 							&& accessor.access == AccessorAccess.READ_WRITE
 							&& accessor.hasMetadata(MetadataName.COPYABLE)) {
-						foundFieldsMap[accessor.name] = accessor;
+						foundFields[accessor.name] = accessor;
 						result.push(accessor);
 					}
 				}
