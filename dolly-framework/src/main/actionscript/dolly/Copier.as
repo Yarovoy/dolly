@@ -55,7 +55,18 @@ public class Copier {
 	}
 
 	dolly_internal static function findCopyableFieldsForType(type:Type):Vector.<Field> {
-		const result:Vector.<Field> = getCopyableFieldsOfType(type);
+		var result:Vector.<Field> = getCopyableFieldsOfType(type);
+
+		var superType:Type;
+		var superTypeCopyableFields:Vector.<Field>;
+
+		for each(var superTypeName:String in type.extendsClasses) {
+			superType = Type.forName(superTypeName);
+			superTypeCopyableFields = getCopyableFieldsOfType(superType);
+			if (superTypeCopyableFields.length > 0) {
+				result = result.concat(superTypeCopyableFields);
+			}
+		}
 
 		return result;
 	}
