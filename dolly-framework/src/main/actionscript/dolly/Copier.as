@@ -21,7 +21,7 @@ public class Copier {
 				(skipMetadataChecking || accessor.hasMetadata(MetadataName.COPYABLE));
 	}
 
-	dolly_internal static function getCopyableFieldsForType(type:Type):Vector.<Field> {
+	dolly_internal static function findCopyableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		var variable:Variable;
@@ -63,7 +63,7 @@ public class Copier {
 		const type:Type = Type.forInstance(source);
 		const copy:* = new (type.clazz)();
 
-		const fieldsToCopy:Vector.<Field> = getCopyableFieldsForType(type);
+		const fieldsToCopy:Vector.<Field> = findCopyableFieldsForType(type);
 		var name:String;
 		for each(var field:Field in fieldsToCopy) {
 			name = field.name;
