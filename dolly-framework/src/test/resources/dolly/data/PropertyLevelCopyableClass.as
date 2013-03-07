@@ -7,10 +7,10 @@ public class PropertyLevelCopyableClass {
 
 	public static var staticProperty2:String = "Value of first-level static property 2.";
 
-	[Cloneable]
+	[Copyable]
 	private var _writableField1:String = "Value of first-level writable field.";
 
-	[Cloneable]
+	[Copyable]
 	public var property1:String = "Value of first-level public property 1.";
 
 	public var property2:String = "Value of first-level public property 2.";
