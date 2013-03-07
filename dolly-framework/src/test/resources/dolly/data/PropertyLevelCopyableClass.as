@@ -2,40 +2,34 @@ package dolly.data {
 
 public class PropertyLevelCopyableClass {
 
-	public static var staticProperty1:String;
-
 	[Copyable]
-	public static var staticProperty2:String;
+	public static var staticProperty1:String = "Value of first-level static property 1.";
 
-	[Copyable]
-	public static var staticProperty3:String;
+	public static var staticProperty2:String = "Value of first-level static property 2.";
 
-	private var _writableField:String;
-	private var _readOnlyField:String = "read-only field value";
+	[Cloneable]
+	private var _writableField1:String = "Value of first-level writable field.";
 
-	public var property1:String;
+	[Cloneable]
+	public var property1:String = "Value of first-level public property 1.";
 
-	[Copyable]
-	public var property2:String;
-
-	[Copyable]
-	public var property3:String;
+	public var property2:String = "Value of first-level public property 2.";
 
 	public function PropertyLevelCopyableClass() {
 	}
 
 	[Copyable]
-	public function get writableField():String {
-		return _writableField;
+	public function get writableField1():String {
+		return _writableField1;
 	}
 
-	public function set writableField(value:String):void {
-		_writableField = value;
+	public function set writableField1(value:String):void {
+		_writableField1 = value;
 	}
 
 	[Copyable]
-	public function get readOnlyField():String {
-		return _readOnlyField;
+	public function get readOnlyField1():String {
+		return "Value of first-level read-only field.";
 	}
 }
 }

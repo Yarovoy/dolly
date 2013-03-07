@@ -23,8 +23,7 @@ public class CopyFunctionTest {
 		propertyLevelCopyable = new PropertyLevelCopyableClass();
 		propertyLevelCopyable.property1 = "value 1";
 		propertyLevelCopyable.property2 = "value 2";
-		propertyLevelCopyable.property3 = "value 3";
-		propertyLevelCopyable.writableField = "value 4";
+		propertyLevelCopyable.writableField1 = "value 4";
 
 		classLevelCopyableType = Type.forInstance(classLevelCopyable);
 		propertyLevelCopyableType = Type.forInstance(propertyLevelCopyable);
@@ -56,8 +55,8 @@ public class CopyFunctionTest {
 
 		assertNotNull(propertyLevelCopy);
 		assertNull(propertyLevelCopy.property1);
-		assertNotNull(propertyLevelCopy.writableField);
-		assertEquals(propertyLevelCopy.writableField, classLevelCopyable.writableField1);
+		assertNotNull(propertyLevelCopy.writableField1);
+		assertEquals(propertyLevelCopy.writableField1, classLevelCopyable.writableField1);
 	}
 }
 }

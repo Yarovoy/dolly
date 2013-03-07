@@ -24,8 +24,7 @@ public class CopierTest {
 		propertyLevelCopyable = new PropertyLevelCopyableClass();
 		propertyLevelCopyable.property1 = "value 1";
 		propertyLevelCopyable.property2 = "value 2";
-		propertyLevelCopyable.property3 = "value 3";
-		propertyLevelCopyable.writableField = "value 4";
+		propertyLevelCopyable.writableField1 = "value 4";
 		propertyLevelCopyableType = Type.forInstance(propertyLevelCopyable);
 
 		propertyLevelCopyableCloneable = new PropertyLevelCopyableCloneableClass();
@@ -69,7 +68,7 @@ public class CopierTest {
 		const copy:PropertyLevelCopyableClass = Copier.copy(propertyLevelCopyable);
 		assertNotNull(copy);
 		assertNull(copy.property1);
-		assertNotNull(copy.writableField);
+		assertNotNull(copy.writableField1);
 	}
 
 	[Test]
