@@ -27,8 +27,8 @@ public class Copier {
 		var variable:Variable;
 		var accessor:Accessor;
 
-		const isClassCloneable:Boolean = type.hasMetadata(MetadataName.COPYABLE);
-		if (isClassCloneable) {
+		const isTypeCloneable:Boolean = type.hasMetadata(MetadataName.COPYABLE);
+		if (isTypeCloneable) {
 			for each(variable in type.variables) {
 				if (isVariableCopyable(variable)) {
 					result.push(variable);
