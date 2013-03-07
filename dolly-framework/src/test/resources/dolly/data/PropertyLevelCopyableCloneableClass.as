@@ -10,6 +10,7 @@ public class PropertyLevelCopyableCloneableClass {
 	[Cloneable]
 	private var _writableField1:String = "Value of first-level writable field.";
 
+	[Copyable]
 	[Cloneable]
 	public var property1:String = "Value of first-level public property 1.";
 
