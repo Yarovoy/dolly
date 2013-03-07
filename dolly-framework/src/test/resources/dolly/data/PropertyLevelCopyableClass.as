@@ -1,5 +1,6 @@
 package dolly.data {
-public class PropertyLevelCopyable {
+
+public class PropertyLevelCopyableClass {
 
 	public static var staticProperty1:String;
 
@@ -20,7 +21,7 @@ public class PropertyLevelCopyable {
 	[Copyable]
 	public var property3:String;
 
-	public function PropertyLevelCopyable() {
+	public function PropertyLevelCopyableClass() {
 	}
 
 	[Copyable]
