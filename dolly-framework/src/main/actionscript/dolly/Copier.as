@@ -4,6 +4,7 @@ import dolly.core.dolly_internal;
 import dolly.core.metadata.MetadataName;
 
 import org.as3commons.reflect.Accessor;
+import org.as3commons.reflect.AccessorAccess;
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.IMetadataContainer;
 import org.as3commons.reflect.Type;
@@ -12,11 +13,6 @@ import org.as3commons.reflect.Variable;
 use namespace dolly_internal;
 
 public class Copier {
-
-	private static function isAccessorCopyable(accessor:Accessor, skipMetadataChecking:Boolean = true):Boolean {
-		return !accessor.isStatic && accessor.isReadable() && accessor.isWriteable() &&
-				(skipMetadataChecking || accessor.hasMetadata(MetadataName.COPYABLE));
-	}
 
 	dolly_internal static function findCopyableFieldsForType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
@@ -32,7 +28,7 @@ public class Copier {
 				}
 			}
 			for each(accessor in type.accessors) {
-				if (isAccessorCopyable(accessor)) {
+				if (!accessor.isStatic && accessor.access == AccessorAccess.READ_WRITE) {
 					result.push(accessor);
 				}
 			}
@@ -46,7 +42,9 @@ public class Copier {
 					}
 				} else if (metadataContainer is Accessor) {
 					accessor = metadataContainer as Accessor;
-					if (isAccessorCopyable(accessor, false)) {
+					if (!accessor.isStatic
+							&& accessor.access == AccessorAccess.READ_WRITE
+							&& accessor.hasMetadata(MetadataName.COPYABLE)) {
 						result.push(accessor);
 					}
 				}
