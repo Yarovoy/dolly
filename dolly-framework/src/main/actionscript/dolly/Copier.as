@@ -14,7 +14,7 @@ use namespace dolly_internal;
 
 public class Copier {
 
-	dolly_internal static function findCopyableFieldsForType(type:Type):Vector.<Field> {
+	private static function getCopyableFieldsOfType(type:Type):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
 
 		var variable:Variable;
@@ -50,6 +50,12 @@ public class Copier {
 				}
 			}
 		}
+
+		return result;
+	}
+
+	dolly_internal static function findCopyableFieldsForType(type:Type):Vector.<Field> {
+		const result:Vector.<Field> = getCopyableFieldsOfType(type);
 
 		return result;
 	}
