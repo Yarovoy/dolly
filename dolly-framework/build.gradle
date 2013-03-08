@@ -31,5 +31,5 @@ additionalCompilerOptions = [
 ]
 
 type = 'swc'
-version = '0.1-alpha-SHAPSHOT'
+version = '0.1'
 output = "${project.name}-${version}"
