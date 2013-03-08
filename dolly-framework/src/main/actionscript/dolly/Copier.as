@@ -5,6 +5,8 @@ import dolly.core.metadata.MetadataName;
 
 import flash.utils.Dictionary;
 
+import mx.collections.ArrayCollection;
+
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.AccessorAccess;
 import org.as3commons.reflect.Field;
@@ -15,6 +17,25 @@ import org.as3commons.reflect.Variable;
 use namespace dolly_internal;
 
 public class Copier {
+
+	private static function copyProperty(source:*, target:*, propertyName:String):void {
+		const sourceProperty:* = source[propertyName];
+
+		if (sourceProperty is Array) {
+			target[propertyName] = (sourceProperty as Array).slice();
+			return;
+		}
+
+		if (sourceProperty is ArrayCollection) {
+			const arrayCollection:ArrayCollection = (sourceProperty as ArrayCollection);
+			target[propertyName] = arrayCollection.source ?
+					new ArrayCollection(arrayCollection.source.slice()) :
+					new ArrayCollection();
+			return;
+		}
+
+		target[propertyName] = sourceProperty;
+	}
 
 	private static function getCopyableFieldsOfType(type:Type, foundFields:Dictionary):Vector.<Field> {
 		const result:Vector.<Field> = new Vector.<Field>();
@@ -88,10 +109,8 @@ public class Copier {
 		const copy:* = new (type.clazz)();
 
 		const fieldsToCopy:Vector.<Field> = findCopyableFieldsForType(type);
-		var name:String;
 		for each(var field:Field in fieldsToCopy) {
-			name = field.name;
-			copy[name] = source[name];
+			copyProperty(source, copy, field.name);
 		}
 
 		return copy;
