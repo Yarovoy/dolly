@@ -8,7 +8,7 @@ Documentation can be found [here][docs].
 Copyright and License
 ---------------------
 
-Copyright © 2012 Yuriy Yarovoy, [http://yarovoy.com][site].
+Copyright © 2013 Yuriy Yarovoy, [http://yarovoy.com][site].
 
 This source code is under MIT License. For more information see [LICENSE.md][license] file.
 
