@@ -3,6 +3,7 @@ package dolly {
 import dolly.core.dolly_internal;
 import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
+import dolly.utils.CopyUtil;
 
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.AccessorAccess;
@@ -44,10 +45,8 @@ public class Cloner {
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 		const clonedInstance:* = new (type.clazz)();
 
-		var name:String;
 		for each(var field:Field in fieldsToClone) {
-			name = field.name;
-			clonedInstance[name] = source[name];
+			CopyUtil.cloneProperty(source, clonedInstance, field.name);
 		}
 
 		return clonedInstance;

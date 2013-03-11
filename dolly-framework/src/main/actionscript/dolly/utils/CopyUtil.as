@@ -34,5 +34,21 @@ public class CopyUtil {
 
 		copyObject(targetObj, propertyName, sourceProperty);
 	}
+
+	public static function cloneProperty(sourceObj:*, targetObj:*, propertyName:String):void {
+		const sourceProperty:* = sourceObj[propertyName];
+
+		if (sourceProperty is Array) {
+			copyArray(targetObj, propertyName, sourceProperty);
+			return;
+		}
+
+		if (sourceProperty is ArrayCollection) {
+			copyArrayCollection(targetObj, propertyName, sourceProperty);
+			return;
+		}
+
+		copyObject(targetObj, propertyName, sourceProperty);
+	}
 }
 }
