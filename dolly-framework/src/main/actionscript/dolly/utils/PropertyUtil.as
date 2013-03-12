@@ -1,19 +1,23 @@
 package dolly.utils {
 
+import dolly.core.dolly_internal;
+
 import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 
+use namespace dolly_internal;
+
 public class PropertyUtil {
 
-	private static function copyArray(targetObj:*, propertyName:String, sourceProperty:*):void {
+	dolly_internal static function copyArray(targetObj:*, propertyName:String, sourceProperty:*):void {
 		targetObj[propertyName] = (sourceProperty as Array).slice();
 	}
 
-	private static function copyArrayList(targetObj:*, propertyName:String, arrayList:ArrayList):void {
+	dolly_internal static function copyArrayList(targetObj:*, propertyName:String, arrayList:ArrayList):void {
 		targetObj[propertyName] = arrayList.source ? new ArrayList(arrayList.source) : new ArrayList();
 	}
 
-	private static function copyArrayCollection(targetObj:*, propertyName:String, sourceProperty:*):void {
+	dolly_internal static function copyArrayCollection(targetObj:*, propertyName:String, sourceProperty:*):void {
 		const arrayCollection:ArrayCollection = (sourceProperty as ArrayCollection);
 		targetObj[propertyName] = arrayCollection.source ?
 				new ArrayCollection(arrayCollection.source.slice()) :
