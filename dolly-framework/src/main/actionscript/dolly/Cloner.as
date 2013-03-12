@@ -3,7 +3,7 @@ package dolly {
 import dolly.core.dolly_internal;
 import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
-import dolly.utils.CopyUtil;
+import dolly.utils.PropertyUtil;
 
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.AccessorAccess;
@@ -46,7 +46,7 @@ public class Cloner {
 		const clonedInstance:* = new (type.clazz)();
 
 		for each(var field:Field in fieldsToClone) {
-			CopyUtil.cloneProperty(source, clonedInstance, field.name);
+			PropertyUtil.cloneProperty(source, clonedInstance, field.name);
 		}
 
 		return clonedInstance;

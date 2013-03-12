@@ -3,7 +3,7 @@ package dolly.utils {
 import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 
-public class CopyUtil {
+public class PropertyUtil {
 
 	private static function copyArray(targetObj:*, propertyName:String, sourceProperty:*):void {
 		targetObj[propertyName] = (sourceProperty as Array).slice();

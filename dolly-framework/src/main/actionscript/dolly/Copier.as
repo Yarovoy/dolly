@@ -2,7 +2,7 @@ package dolly {
 
 import dolly.core.dolly_internal;
 import dolly.core.metadata.MetadataName;
-import dolly.utils.CopyUtil;
+import dolly.utils.PropertyUtil;
 
 import flash.utils.Dictionary;
 
@@ -90,7 +90,7 @@ public class Copier {
 
 		const fieldsToCopy:Vector.<Field> = findCopyableFieldsForType(type);
 		for each(var field:Field in fieldsToCopy) {
-			CopyUtil.copyProperty(source, copy, field.name);
+			PropertyUtil.copyProperty(source, copy, field.name);
 		}
 
 		return copy;
