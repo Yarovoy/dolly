@@ -9,8 +9,8 @@ use namespace dolly_internal;
 
 public class PropertyUtil {
 
-	dolly_internal static function copyArray(targetObj:*, propertyName:String, sourceProperty:*):void {
-		targetObj[propertyName] = (sourceProperty as Array).slice();
+	dolly_internal static function copyArray(sourceObj:*, targetObj:*, propertyName:String):void {
+		targetObj[propertyName] = sourceObj[propertyName].slice();
 	}
 
 	dolly_internal static function copyArrayList(targetObj:*, propertyName:String, arrayList:ArrayList):void {
@@ -32,7 +32,7 @@ public class PropertyUtil {
 		const sourceProperty:* = sourceObj[propertyName];
 
 		if (sourceProperty is Array) {
-			copyArray(targetObj, propertyName, sourceProperty);
+			copyArray(sourceObj, targetObj, propertyName);
 			return;
 		}
 
@@ -53,7 +53,7 @@ public class PropertyUtil {
 		const sourceProperty:* = sourceObj[propertyName];
 
 		if (sourceProperty is Array) {
-			copyArray(targetObj, propertyName, sourceProperty);
+			copyArray(sourceObj, targetObj, propertyName);
 			return;
 		}
 

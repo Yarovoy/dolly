@@ -36,7 +36,7 @@ public class PropertyUtilTests {
 
 	[Test]
 	public function copyingOfArray():void {
-		PropertyUtil.copyArray(targetObj, "array", sourceObj.array);
+		PropertyUtil.copyArray(sourceObj, targetObj, "array");
 
 		assertThat(targetObj.array, arrayWithSize(5));
 		assertThat(targetObj.array, sourceObj.array);
