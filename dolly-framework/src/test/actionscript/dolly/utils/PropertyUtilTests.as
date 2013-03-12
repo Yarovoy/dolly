@@ -63,5 +63,21 @@ public class PropertyUtilTests {
 		assertEquals(targetArrayList.getItemAt(3), 3);
 		assertEquals(targetArrayList.getItemAt(4), 4);
 	}
+
+	[Test]
+	public function copyingOfArrayCollection():void {
+		PropertyUtil.copyArrayCollection(sourceObj, targetObj, "arrayCollection");
+
+		const targetArrayCollection:ArrayCollection = targetObj.arrayCollection;
+
+		assertNotNull(targetArrayCollection);
+		assertFalse(targetObj.arrayList == sourceObj.arrayList);
+		assertEquals(targetArrayCollection.length, 5);
+		assertEquals(targetArrayCollection.getItemAt(0), 0);
+		assertEquals(targetArrayCollection.getItemAt(1), 1);
+		assertEquals(targetArrayCollection.getItemAt(2), 2);
+		assertEquals(targetArrayCollection.getItemAt(3), 3);
+		assertEquals(targetArrayCollection.getItemAt(4), 4);
+	}
 }
 }
