@@ -5,6 +5,9 @@ import mx.collections.ArrayCollection;
 import mx.collections.ArrayList;
 
 import org.flexunit.assertThat;
+import org.flexunit.asserts.assertEquals;
+import org.flexunit.asserts.assertFalse;
+import org.flexunit.asserts.assertNotNull;
 import org.flexunit.asserts.assertTrue;
 import org.hamcrest.collection.array;
 import org.hamcrest.collection.arrayWithSize;
@@ -43,6 +46,22 @@ public class PropertyUtilTests {
 		assertTrue(targetObj.array != sourceObj.array);
 		assertThat(targetObj.array, everyItem(isA(Number)));
 		assertThat(targetObj.array, array(equalTo(0), equalTo(1), equalTo(2), equalTo(3), equalTo(4)));
+	}
+
+	[Test]
+	public function copyingOfArrayList():void {
+		PropertyUtil.copyArrayList(sourceObj, targetObj, "arrayList");
+
+		const targetArrayList:ArrayList = targetObj.arrayList;
+
+		assertNotNull(targetArrayList);
+		assertFalse(targetObj.arrayList == sourceObj.arrayList);
+		assertEquals(targetArrayList.length, 5);
+		assertEquals(targetArrayList.getItemAt(0), 0);
+		assertEquals(targetArrayList.getItemAt(1), 1);
+		assertEquals(targetArrayList.getItemAt(2), 2);
+		assertEquals(targetArrayList.getItemAt(3), 3);
+		assertEquals(targetArrayList.getItemAt(4), 4);
 	}
 }
 }
