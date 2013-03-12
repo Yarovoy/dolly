@@ -13,8 +13,10 @@ public class PropertyUtil {
 		targetObj[propertyName] = sourceObj[propertyName].slice();
 	}
 
-	dolly_internal static function copyArrayList(targetObj:*, propertyName:String, arrayList:ArrayList):void {
-		targetObj[propertyName] = arrayList.source ? new ArrayList(arrayList.source) : new ArrayList();
+	dolly_internal static function copyArrayList(sourceObj:*, targetObj:*, propertyName:String):void {
+		targetObj[propertyName] = sourceObj[propertyName] ?
+				new ArrayList(sourceObj[propertyName].source) :
+				new ArrayList();
 	}
 
 	dolly_internal static function copyArrayCollection(targetObj:*, propertyName:String, sourceProperty:*):void {
@@ -37,7 +39,7 @@ public class PropertyUtil {
 		}
 
 		if (sourceProperty is ArrayList) {
-			copyArrayList(targetObj, propertyName, sourceObj);
+			copyArrayList(sourceObj, targetObj, propertyName);
 			return;
 		}
 
@@ -58,7 +60,7 @@ public class PropertyUtil {
 		}
 
 		if (sourceProperty is ArrayList) {
-			copyArrayList(targetObj, propertyName, sourceProperty);
+			copyArrayList(sourceObj, targetObj, propertyName);
 			return;
 		}
 
