@@ -18,13 +18,17 @@ public class Cloner {
 		return type.hasMetadata(MetadataName.CLONEABLE);
 	}
 
-	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
+	private static function failIfTypeIsNotCloneable(type:Type):void {
 		if (!isTypeCloneable(type)) {
 			throw new CloningError(
 					CloningError.CLASS_IS_NOT_CLONEABLE_MESSAGE,
 					CloningError.CLASS_IS_NOT_CLONEABLE_CODE
 			);
 		}
+	}
+
+	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
+		failIfTypeIsNotCloneable(type);
 
 		const result:Vector.<Field> = new Vector.<Field>();
 
@@ -39,6 +43,8 @@ public class Cloner {
 
 	public static function clone(source:*):* {
 		const type:Type = Type.forInstance(source);
+
+		failIfTypeIsNotCloneable(type);
 
 		// Find all public writable fields in a hierarchy of a source object
 		// and assign their values to a clone object.
