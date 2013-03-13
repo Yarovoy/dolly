@@ -2,6 +2,9 @@ package dolly {
 import dolly.core.dolly_internal;
 import dolly.data.CompositeCloneableClass;
 
+import mx.collections.ArrayCollection;
+import mx.collections.ArrayList;
+
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
@@ -24,6 +27,9 @@ public class CloningOfCompositeCloneableClassTest {
 	[Before]
 	public function before():void {
 		compositeCloneableClass = new CompositeCloneableClass();
+		compositeCloneableClass.array = [1, 2, 3, 4, 5];
+		compositeCloneableClass.arrayList = new ArrayList([1, 2, 3, 4, 5]);
+		compositeCloneableClass.arrayCollection = new ArrayCollection([1, 2, 3, 4, 5]);
 
 		compositeCloneableClassType = Type.forInstance(compositeCloneableClass);
 	}
@@ -50,7 +56,7 @@ public class CloningOfCompositeCloneableClassTest {
 		assertThat(clone.array, compositeCloneableClass.array);
 		assertFalse(clone.array == compositeCloneableClass.array);
 		assertThat(clone.array, everyItem(isA(Number)));
-		assertThat(clone.array, array(equalTo(0), equalTo(1), equalTo(2), equalTo(3), equalTo(4)));
+		assertThat(clone.array, array(equalTo(1), equalTo(2), equalTo(3), equalTo(4), equalTo(5)));
 	}
 }
 }
