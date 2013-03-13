@@ -41,13 +41,7 @@ public class Cloner {
 		return result;
 	}
 
-	public static function clone(source:*):* {
-		const type:Type = Type.forInstance(source);
-
-		failIfTypeIsNotCloneable(type);
-
-		// Find all public writable fields in a hierarchy of a source object
-		// and assign their values to a clone object.
+	dolly_internal static function doClone(source:*, deep:int, type:Type = null):* {
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 		const clonedInstance:* = new (type.clazz)();
 
@@ -56,6 +50,16 @@ public class Cloner {
 		}
 
 		return clonedInstance;
+	}
+
+	public static function clone(source:*):* {
+		const type:Type = Type.forInstance(source);
+
+		failIfTypeIsNotCloneable(type);
+
+		const deep:int = 2;
+
+		return doClone(source, deep, type);
 	}
 }
 }
