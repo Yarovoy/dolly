@@ -5,6 +5,8 @@ import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
 import dolly.utils.PropertyUtil;
 
+import flash.utils.Dictionary;
+
 import org.as3commons.reflect.Accessor;
 import org.as3commons.reflect.AccessorAccess;
 import org.as3commons.reflect.Field;
@@ -41,8 +43,12 @@ public class Cloner {
 		return result;
 	}
 
-	dolly_internal static function doClone(source:*, deep:int, type:Type = null):* {
-		if(!type) {
+	dolly_internal static function doClone(source:*, deep:int, clonedObjectsMap:Dictionary = null, type:Type = null):* {
+		if (!clonedObjectsMap) {
+			clonedObjectsMap = new Dictionary();
+		}
+
+		if (!type) {
 			type = Type.forInstance(source);
 		}
 
@@ -63,7 +69,7 @@ public class Cloner {
 
 		const deep:int = 2;
 
-		return doClone(source, deep, type);
+		return doClone(source, deep, null, type);
 	}
 }
 }
