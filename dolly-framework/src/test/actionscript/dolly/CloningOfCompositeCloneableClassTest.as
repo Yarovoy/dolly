@@ -79,16 +79,16 @@ public class CloningOfCompositeCloneableClassTest {
 	public function cloningOfArrayCollection():void {
 		const clone:CompositeCloneableClass = Cloner.clone(compositeCloneableClass);
 
-		const targetArrayCollection:ArrayCollection = clone.arrayCollection;
+		const arrayCollection:ArrayCollection = clone.arrayCollection;
 
-		assertNotNull(targetArrayCollection);
+		assertNotNull(arrayCollection);
 		assertFalse(clone.arrayCollection == compositeCloneableClass.arrayCollection);
-		assertEquals(targetArrayCollection.length, 5);
-		assertEquals(targetArrayCollection.getItemAt(0), 1);
-		assertEquals(targetArrayCollection.getItemAt(1), 2);
-		assertEquals(targetArrayCollection.getItemAt(2), 3);
-		assertEquals(targetArrayCollection.getItemAt(3), 4);
-		assertEquals(targetArrayCollection.getItemAt(4), 5);
+		assertEquals(arrayCollection.length, 5);
+		assertEquals(arrayCollection.getItemAt(0), 1);
+		assertEquals(arrayCollection.getItemAt(1), 2);
+		assertEquals(arrayCollection.getItemAt(2), 3);
+		assertEquals(arrayCollection.getItemAt(3), 4);
+		assertEquals(arrayCollection.getItemAt(4), 5);
 	}
 }
 }
