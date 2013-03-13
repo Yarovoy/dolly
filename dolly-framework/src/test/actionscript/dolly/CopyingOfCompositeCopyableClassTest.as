@@ -59,5 +59,21 @@ public class CopyingOfCompositeCopyableClassTest {
 		assertThat(copy.array, everyItem(isA(Number)));
 		assertThat(copy.array, array(equalTo(1), equalTo(2), equalTo(3), equalTo(4), equalTo(5)));
 	}
+
+	[Test]
+	public function copyingOfArrayList():void {
+		const copy:CompositeCopyableClass = Copier.copy(compositeCopyableClass);
+
+		const arrayList:ArrayList = copy.arrayList;
+
+		assertNotNull(arrayList);
+		assertFalse(copy.arrayList == compositeCopyableClass.arrayList);
+		assertEquals(arrayList.length, 5);
+		assertEquals(arrayList.getItemAt(0), 1);
+		assertEquals(arrayList.getItemAt(1), 2);
+		assertEquals(arrayList.getItemAt(2), 3);
+		assertEquals(arrayList.getItemAt(3), 4);
+		assertEquals(arrayList.getItemAt(4), 5);
+	}
 }
 }
