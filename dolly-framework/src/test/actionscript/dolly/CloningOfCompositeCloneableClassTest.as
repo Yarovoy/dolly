@@ -59,7 +59,6 @@ public class CloningOfCompositeCloneableClassTest {
 		assertThat(clone.array, array(equalTo(1), equalTo(2), equalTo(3), equalTo(4), equalTo(5)));
 	}
 
-
 	[Test]
 	public function cloningOfArrayList():void {
 		const clone:CompositeCloneableClass = Cloner.clone(compositeCloneableClass);
@@ -74,6 +73,22 @@ public class CloningOfCompositeCloneableClassTest {
 		assertEquals(arrayList.getItemAt(2), 3);
 		assertEquals(arrayList.getItemAt(3), 4);
 		assertEquals(arrayList.getItemAt(4), 5);
+	}
+
+	[Test]
+	public function cloningOfArrayCollection():void {
+		const clone:CompositeCloneableClass = Cloner.clone(compositeCloneableClass);
+
+		const targetArrayCollection:ArrayCollection = clone.arrayCollection;
+
+		assertNotNull(targetArrayCollection);
+		assertFalse(clone.arrayList == compositeCloneableClass.arrayList);
+		assertEquals(targetArrayCollection.length, 5);
+		assertEquals(targetArrayCollection.getItemAt(0), 1);
+		assertEquals(targetArrayCollection.getItemAt(1), 2);
+		assertEquals(targetArrayCollection.getItemAt(2), 3);
+		assertEquals(targetArrayCollection.getItemAt(3), 4);
+		assertEquals(targetArrayCollection.getItemAt(4), 5);
 	}
 }
 }
