@@ -9,7 +9,14 @@ import mx.collections.ArrayList;
 import org.as3commons.reflect.Field;
 import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
+import org.flexunit.asserts.assertFalse;
 import org.flexunit.asserts.assertNotNull;
+import org.hamcrest.assertThat;
+import org.hamcrest.collection.array;
+import org.hamcrest.collection.arrayWithSize;
+import org.hamcrest.collection.everyItem;
+import org.hamcrest.core.isA;
+import org.hamcrest.object.equalTo;
 
 use namespace dolly_internal;
 
@@ -39,6 +46,18 @@ public class CopyingOfCompositeCopyableClassTest {
 		const writableFields:Vector.<Field> = Copier.findCopyableFieldsForType(compositeCopyableClassType);
 		assertNotNull(writableFields);
 		assertEquals(4, writableFields.length);
+	}
+
+	[Test]
+	public function copyingOfArray():void {
+		const copy:CompositeCopyableClass = Copier.copy(compositeCopyableClass);
+
+		assertNotNull(copy.array);
+		assertThat(copy.array, arrayWithSize(5));
+		assertThat(copy.array, compositeCopyableClass.array);
+		assertFalse(copy.array == compositeCopyableClass.array);
+		assertThat(copy.array, everyItem(isA(Number)));
+		assertThat(copy.array, array(equalTo(1), equalTo(2), equalTo(3), equalTo(4), equalTo(5)));
 	}
 }
 }
