@@ -42,6 +42,10 @@ public class Cloner {
 	}
 
 	dolly_internal static function doClone(source:*, deep:int, type:Type = null):* {
+		if(!type) {
+			type = Type.forInstance(source);
+		}
+
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 		const clonedInstance:* = new (type.clazz)();
 
