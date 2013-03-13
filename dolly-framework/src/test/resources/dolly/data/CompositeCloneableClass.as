@@ -5,7 +5,7 @@ import mx.collections.ArrayList;
 [Cloneable]
 public class CompositeCloneableClass {
 
-	public var cloneable:CloneableClass = new CloneableClass();
+	public var cloneable:CloneableClass;
 
 	public var array:Array = [0, 1, 2, 3, 4];
 
