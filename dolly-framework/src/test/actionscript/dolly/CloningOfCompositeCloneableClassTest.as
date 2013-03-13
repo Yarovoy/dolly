@@ -82,7 +82,7 @@ public class CloningOfCompositeCloneableClassTest {
 		const targetArrayCollection:ArrayCollection = clone.arrayCollection;
 
 		assertNotNull(targetArrayCollection);
-		assertFalse(clone.arrayList == compositeCloneableClass.arrayList);
+		assertFalse(clone.arrayCollection == compositeCloneableClass.arrayCollection);
 		assertEquals(targetArrayCollection.length, 5);
 		assertEquals(targetArrayCollection.getItemAt(0), 1);
 		assertEquals(targetArrayCollection.getItemAt(1), 2);
