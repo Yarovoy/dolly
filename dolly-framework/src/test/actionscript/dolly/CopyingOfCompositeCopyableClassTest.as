@@ -75,5 +75,21 @@ public class CopyingOfCompositeCopyableClassTest {
 		assertEquals(arrayList.getItemAt(3), 4);
 		assertEquals(arrayList.getItemAt(4), 5);
 	}
+
+	[Test]
+	public function copyingOfArrayCollection():void {
+		const copy:CompositeCopyableClass = Copier.copy(compositeCopyableClass);
+
+		const arrayCollection:ArrayCollection = copy.arrayCollection;
+
+		assertNotNull(arrayCollection);
+		assertFalse(copy.arrayCollection == compositeCopyableClass.arrayCollection);
+		assertEquals(arrayCollection.length, 5);
+		assertEquals(arrayCollection.getItemAt(0), 1);
+		assertEquals(arrayCollection.getItemAt(1), 2);
+		assertEquals(arrayCollection.getItemAt(2), 3);
+		assertEquals(arrayCollection.getItemAt(3), 4);
+		assertEquals(arrayCollection.getItemAt(4), 5);
+	}
 }
 }
