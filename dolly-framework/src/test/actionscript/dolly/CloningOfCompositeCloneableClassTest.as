@@ -16,6 +16,7 @@ import org.hamcrest.collection.array;
 import org.hamcrest.collection.arrayWithSize;
 import org.hamcrest.collection.everyItem;
 import org.hamcrest.core.isA;
+import org.hamcrest.core.not;
 import org.hamcrest.object.equalTo;
 
 use namespace dolly_internal;
@@ -106,6 +107,19 @@ public class CloningOfCompositeCloneableClassTest {
 		assertEquals(arrayCollection.getItemAt(2), 3);
 		assertEquals(arrayCollection.getItemAt(3), 4);
 		assertEquals(arrayCollection.getItemAt(4), 5);
+	}
+
+	[Test]
+	public function cloningOfCloneableProperty():void {
+		const clone:CompositeCloneableClass = Cloner.clone(compositeCloneableClass);
+
+		const cloneable:CloneableClass = clone.cloneable;
+
+		assertNotNull(cloneable);
+		assertThat(cloneable, isA(CloneableClass));
+		assertEquals(cloneable.property1, "property1 value");
+		assertEquals(cloneable.writableField1, "writableField1 value");
+		assertThat(cloneable, not(compositeCloneableClass.cloneable));
 	}
 }
 }
