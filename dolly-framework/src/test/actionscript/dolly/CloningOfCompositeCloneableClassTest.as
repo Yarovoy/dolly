@@ -1,5 +1,6 @@
 package dolly {
 import dolly.core.dolly_internal;
+import dolly.data.CloneableClass;
 import dolly.data.CompositeCloneableClass;
 
 import mx.collections.ArrayCollection;
@@ -27,6 +28,19 @@ public class CloningOfCompositeCloneableClassTest {
 	[Before]
 	public function before():void {
 		compositeCloneableClass = new CompositeCloneableClass();
+
+		const nestedCloneable:CloneableClass = new CloneableClass();
+		nestedCloneable.property1 = "property1 value";
+		nestedCloneable.writableField1 = "writableField1 value";
+
+		const nestedCompositeCloneable:CompositeCloneableClass = new CompositeCloneableClass();
+		nestedCompositeCloneable.compositeCloneable = compositeCloneableClass;
+		nestedCompositeCloneable.array = [1, 2, 3];
+		nestedCompositeCloneable.arrayList = new ArrayList([1, 2, 3]);
+		nestedCompositeCloneable.arrayCollection = new ArrayCollection([1, 2, 3]);
+
+		compositeCloneableClass.cloneable = nestedCloneable;
+		compositeCloneableClass.compositeCloneable = nestedCompositeCloneable;
 		compositeCloneableClass.array = [1, 2, 3, 4, 5];
 		compositeCloneableClass.arrayList = new ArrayList([1, 2, 3, 4, 5]);
 		compositeCloneableClass.arrayCollection = new ArrayCollection([1, 2, 3, 4, 5]);
@@ -36,6 +50,9 @@ public class CloningOfCompositeCloneableClassTest {
 
 	[After]
 	public function after():void {
+		compositeCloneableClass.compositeCloneable =
+				compositeCloneableClass.compositeCloneable.compositeCloneable = null;
+		compositeCloneableClass.cloneable = null;
 		compositeCloneableClass = null;
 		compositeCloneableClassType = null;
 	}
