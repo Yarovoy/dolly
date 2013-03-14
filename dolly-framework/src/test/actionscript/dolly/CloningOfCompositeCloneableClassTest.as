@@ -44,7 +44,7 @@ public class CloningOfCompositeCloneableClassTest {
 	public function findingAllWritableFieldsForType():void {
 		const writableFields:Vector.<Field> = Cloner.findAllWritableFieldsForType(compositeCloneableClassType);
 		assertNotNull(writableFields);
-		assertEquals(4, writableFields.length);
+		assertEquals(5, writableFields.length);
 	}
 
 	[Test]
