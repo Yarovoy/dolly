@@ -72,28 +72,20 @@ public class Cloner {
 		return result;
 	}
 
-	dolly_internal static function doClone(source:*, type:Type = null):* {
-		if (!type) {
-			type = Type.forInstance(source);
-		}
-
-		prepareTypeForCloning(type);
-
+	dolly_internal static function doClone(source:*):* {
 		const byteArray:ByteArray = new ByteArray();
 		byteArray.writeObject(source);
 		byteArray.position = 0;
-
-		const clonedInstance:* = byteArray.readObject();
-
-		return clonedInstance;
+		return byteArray.readObject();
 	}
 
 	public static function clone(source:*):* {
 		const type:Type = Type.forInstance(source);
 
 		failIfTypeIsNotCloneable(type);
+		prepareTypeForCloning(type);
 
-		return doClone(source, type);
+		return doClone(source);
 	}
 }
 }
