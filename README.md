@@ -1,4 +1,4 @@
-Dolly Framework, version 0.1.
+Dolly Framework, version 0.3.
 =============
 
 Dolly is a simple ActionScript 3 framework for making copyes and clones of objects by using metadata tags.
