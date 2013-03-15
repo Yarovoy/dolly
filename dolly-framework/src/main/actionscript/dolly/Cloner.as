@@ -44,6 +44,14 @@ public class Cloner {
 		ClassUtil.registerAliasFor(type.clazz);
 
 		_isClassPreparedForCloningMap[type.clazz] = true;
+
+		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
+		for each(var field:Field in fieldsToClone) {
+			var fieldType:Type = field.type;
+			if (isTypeCloneable(fieldType)) {
+				prepareTypeForCloning(fieldType);
+			}
+		}
 	}
 
 	dolly_internal static function findAllWritableFieldsForType(type:Type):Vector.<Field> {
@@ -70,15 +78,6 @@ public class Cloner {
 		}
 
 		prepareTypeForCloning(type);
-
-		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
-
-		for each(var field:Field in fieldsToClone) {
-			var fieldType:Type = field.type;
-			if (isTypeCloneable(fieldType)) {
-				prepareTypeForCloning(fieldType);
-			}
-		}
 
 		const byteArray:ByteArray = new ByteArray();
 		byteArray.writeObject(source);
