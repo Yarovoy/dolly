@@ -7,6 +7,8 @@ public class CompositeCloneableClass {
 
 	public var cloneable:CloneableClass;
 
+	public var compositeCloneable:CompositeCloneableClass;
+
 	public var array:Array = [0, 1, 2, 3, 4];
 
 	public var arrayList:ArrayList = new ArrayList([0, 1, 2, 3, 4]);
