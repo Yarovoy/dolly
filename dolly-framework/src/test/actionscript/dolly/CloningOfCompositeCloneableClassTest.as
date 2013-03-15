@@ -11,7 +11,6 @@ import org.as3commons.reflect.Type;
 import org.flexunit.asserts.assertEquals;
 import org.flexunit.asserts.assertFalse;
 import org.flexunit.asserts.assertNotNull;
-import org.flexunit.asserts.assertTrue;
 import org.hamcrest.assertThat;
 import org.hamcrest.collection.array;
 import org.hamcrest.collection.arrayWithSize;
