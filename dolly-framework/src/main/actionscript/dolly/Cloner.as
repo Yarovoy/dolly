@@ -37,6 +37,10 @@ public class Cloner {
 	}
 
 	private static function prepareTypeForCloning(type:Type):void {
+		if (isTypePreparedForCloning(type)) {
+			return;
+		}
+
 		ClassUtil.registerAliasFor(type.clazz);
 
 		_isClassPreparedForCloningMap[type.clazz] = true;
@@ -65,15 +69,13 @@ public class Cloner {
 			type = Type.forInstance(source);
 		}
 
-		if (!isTypePreparedForCloning(type)) {
-			prepareTypeForCloning(type);
-		}
+		prepareTypeForCloning(type);
 
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 
 		for each(var field:Field in fieldsToClone) {
 			var fieldType:Type = field.type;
-			if (isTypeCloneable(fieldType) && !isTypePreparedForCloning(fieldType)) {
+			if (isTypeCloneable(fieldType)) {
 				prepareTypeForCloning(fieldType);
 			}
 		}
