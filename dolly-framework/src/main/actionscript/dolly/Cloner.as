@@ -4,10 +4,8 @@ import dolly.core.dolly_internal;
 import dolly.core.errors.CloningError;
 import dolly.core.metadata.MetadataName;
 import dolly.utils.ClassUtil;
-import dolly.utils.PropertyUtil;
 
 import flash.utils.ByteArray;
-
 import flash.utils.Dictionary;
 
 import org.as3commons.reflect.Accessor;
@@ -62,25 +60,20 @@ public class Cloner {
 		return result;
 	}
 
-	dolly_internal static function doClone(source:*, deep:int, clonedObjectsMap:Dictionary = null, type:Type = null):* {
-		if (!clonedObjectsMap) {
-			clonedObjectsMap = new Dictionary();
-		}
-
+	dolly_internal static function doClone(source:*, type:Type = null):* {
 		if (!type) {
 			type = Type.forInstance(source);
 		}
 
-		if(!isTypePreparedForCloning(type)) {
+		if (!isTypePreparedForCloning(type)) {
 			prepareTypeForCloning(type);
 		}
 
 		const fieldsToClone:Vector.<Field> = findAllWritableFieldsForType(type);
 
 		for each(var field:Field in fieldsToClone) {
-//			PropertyUtil.cloneProperty(source, clonedInstance, field.name);
 			var fieldType:Type = field.type;
-			if(isTypeCloneable(fieldType) && !isTypePreparedForCloning(fieldType)) {
+			if (isTypeCloneable(fieldType) && !isTypePreparedForCloning(fieldType)) {
 				prepareTypeForCloning(fieldType);
 			}
 		}
@@ -99,9 +92,7 @@ public class Cloner {
 
 		failIfTypeIsNotCloneable(type);
 
-		const deep:int = 2;
-
-		return doClone(source, deep, null, type);
+		return doClone(source, type);
 	}
 }
 }
